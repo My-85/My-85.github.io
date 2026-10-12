@@ -527,6 +527,8 @@ button {
 
 .project-meta {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
