@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="910" viewBox="0 0 1360 910" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">Replay platform · Make an experiment traceable</title><desc id="desc">Connect training records, physical quantities, policy checkpoints and visual replay.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2d5f94"/></marker></defs>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;fill:#12243d}.title{font-size:38px;font-weight:700}.subtitle{font-size:25px;fill:#607080}.node-title{font-size:33px;font-weight:700}.body{font-size:26px;fill:#263545}.number{font-size:26px;fill:#fff;font-weight:700}.footer{font-size:26px;fill:#2d5f94}.label{font-size:24px;fill:#607080}</style>
+<rect width="1360" height="910" fill="#fff"/>
+<text x="62" y="78" class="title">Replay platform · Make an experiment traceable</text>
+<text x="62" y="126" class="subtitle">Connect training records, physical quantities, policy checkpoints and visual replay.</text>
+<path d="M 620 314 H 726" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 1010 448 V 508" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 740 632 H 634" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<rect x="60" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="247" r="23" fill="#2d5f94"/>
+<text x="100" y="257" class="number">1</text>
+<text x="148" y="258" class="node-title">Collect transitions</text>
+<text x="92" y="324" class="body">Planax / SMAC training outputs</text>
+<text x="92" y="372" class="body">States, actions, rewards and dones</text>
+<rect x="740" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="247" r="23" fill="#2d5f94"/>
+<text x="780" y="257" class="number">2</text>
+<text x="828" y="258" class="node-title">Import and validate</text>
+<text x="772" y="324" class="body">Check formats and fields</text>
+<text x="772" y="372" class="body">Recover physical observation units</text>
+<rect x="740" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="571" r="23" fill="#2d5f94"/>
+<text x="780" y="581" class="number">3</text>
+<text x="828" y="582" class="node-title">Query and archive</text>
+<text x="772" y="648" class="body">Records, curves and annotations</text>
+<text x="772" y="696" class="body">Link checkpoints and evaluations</text>
+<rect x="60" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="571" r="23" fill="#2d5f94"/>
+<text x="100" y="581" class="number">4</text>
+<text x="148" y="582" class="node-title">Restore and replay</text>
+<text x="92" y="648" class="body">Restore policies and export ACMI</text>
+<text x="92" y="696" class="body">Manage Tacview / SC2Replay</text>
+<rect x="60" y="815" width="1240" height="62" rx="12" fill="#e8eff6"/>
+<text x="86" y="856" class="footer">Training data  ↔  Experiment  ↔  Policy version  ↔  Replay</text>
+</svg>

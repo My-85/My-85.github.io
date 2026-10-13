@@ -1,0 +1,49 @@
+{
+  "intro": [
+    "我为国家科技创新 2030“脑科学与类脑研究”重大项目子课题开发强化学习数据采集与仿真回放工具链，让训练记录可以追溯到策略版本与可视化结果，支持实验问题定位和结果复查。",
+    "I developed an RL data-collection and simulation-replay toolchain for a subproject of the national Science and Technology Innovation 2030 “Brain Science and Brain-Like Research” program, linking training records to policy versions and visual results for experiment diagnosis and review."
+  ],
+  "bullets": [
+    [
+      "适配 Planax 轨迹与 SMAC 数据，连接导入校验、明细查询、曲线展示、checkpoint 归档和注释管理。",
+      "Adapted Planax trajectories and SMAC data for import validation, detailed queries, curve visualization, checkpoint archiving, and annotation management."
+    ],
+    [
+      "将归一化观测还原为有物理单位的飞行状态；下方图表直接取自一段真实五智能体训练日志，并随包提供对应数据。",
+      "Recovered physical flight quantities from normalized observations. The plot below uses an actual five-agent training log, with the corresponding data included."
+    ],
+    [
+      "联动策略恢复与 Tacview，管理 ACMI / SC2Replay 文件；形成从训练数据、实验与模型记录到仿真回放的可追溯链路。",
+      "Connected policy restoration with Tacview and managed ACMI / SC2Replay files, creating a traceable chain from training data and experiment/model records to simulation replay."
+    ]
+  ],
+  "images": [
+    [
+      "framework",
+      "svg",
+      true,
+      "强化学习数据采集、策略归档与仿真回放链路",
+      "RL data collection, policy archiving and simulation replay pipeline",
+      "训练记录、物理量、策略 checkpoint 与回放结果可以相互关联。点击图片可放大查看。",
+      "Training records, physical quantities, policy checkpoints, and replay results are linked. Click the image to enlarge."
+    ],
+    [
+      "rollout-results",
+      "webp",
+      true,
+      "真实训练日志中 agent 0 的空速与高度曲线",
+      "Agent 0 airspeed and altitude from an actual training log",
+      "五智能体日志中的 agent 0，共 1000 个记录步。按日志定义还原空速（归一化值 × 340 m/s）与高度（归一化值 × 5000 m）；图表展示数据追溯能力。",
+      "Agent 0 from a five-agent log, across 1,000 recorded timesteps. Airspeed and altitude use the log’s scales of 340 m/s and 5000 m, respectively. The plot illustrates data traceability."
+    ]
+  ],
+  "videos": [],
+  "links": [
+    [
+      "assets/projects/replay/rollout-sample.csv",
+      "样例物理量（CSV）",
+      "Sample physical data (CSV)",
+      "download"
+    ]
+  ]
+}

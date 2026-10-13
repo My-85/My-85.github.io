@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="910" viewBox="0 0 1360 910" lang="en" role="img" aria-labelledby="title desc">
+<title id="title">G-EATS · Make a flight path executable</title><desc id="desc">Attitude and airspeed targets connect planning, learned control and dynamics feedback.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2d5f94"/></marker></defs>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;fill:#12243d}.title{font-size:38px;font-weight:700}.subtitle{font-size:25px;fill:#607080}.node-title{font-size:33px;font-weight:700}.body{font-size:26px;fill:#263545}.number{font-size:26px;fill:#fff;font-weight:700}.footer{font-size:26px;fill:#2d5f94}.label{font-size:24px;fill:#607080}</style>
+<rect width="1360" height="910" fill="#fff"/>
+<text x="62" y="78" class="title">G-EATS · Make a flight path executable</text>
+<text x="62" y="126" class="subtitle">Attitude and airspeed targets connect planning, learned control and dynamics feedback.</text>
+<path d="M 620 314 H 726" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 1010 448 V 508" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 740 632 H 634" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 340 772 V 791 H 1020 V 782" fill="none" stroke="#2d5f94" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
+<rect x="60" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="247" r="23" fill="#2d5f94"/>
+<text x="100" y="257" class="number">1</text>
+<text x="148" y="258" class="node-title">Reference maneuver</text>
+<text x="92" y="324" class="body">S-curves, figure-eights, pull-ups</text>
+<text x="92" y="372" class="body">Define local geometry and goals</text>
+<rect x="740" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="247" r="23" fill="#2d5f94"/>
+<text x="780" y="257" class="number">2</text>
+<text x="828" y="258" class="node-title">Executable target stream</text>
+<text x="772" y="324" class="body">Local heading, pitch, roll, speed</text>
+<text x="772" y="372" class="body">Evaluate lookahead / speed choices</text>
+<rect x="740" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="571" r="23" fill="#2d5f94"/>
+<text x="780" y="581" class="number">3</text>
+<text x="828" y="582" class="node-title">Frozen learned controller</text>
+<text x="772" y="648" class="body">Quaternion goals + energy-aware PPO</text>
+<text x="772" y="696" class="body">Output throttle and actuators</text>
+<rect x="60" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="571" r="23" fill="#2d5f94"/>
+<text x="100" y="581" class="number">4</text>
+<text x="148" y="582" class="node-title">Dynamics and evaluation</text>
+<text x="92" y="648" class="body">Nonlinear six-DOF simulation</text>
+<text x="92" y="696" class="body">Geometry, energy, flight envelope</text>
+<rect x="60" y="815" width="1240" height="62" rx="12" fill="#e8eff6"/>
+<text x="86" y="856" class="footer">One flight skill  +  Task-dependent target streams  →  Different maneuvers</text>
+</svg>

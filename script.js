@@ -8,7 +8,7 @@
   const languageStorageKey = "qinyu-homepage-language";
   const textTranslations = Array.from(document.querySelectorAll("[data-en]"))
     .map((element) => ({ element, zh: element.textContent, en: element.getAttribute("data-en") }));
-  const translatedAttributes = ["content", "alt", "aria-label", "title"];
+  const translatedAttributes = ["content", "alt", "aria-label", "title", "src", "href"];
   const attributeTranslations = translatedAttributes.flatMap((attribute) =>
     Array.from(document.querySelectorAll(`[data-en-${attribute}]`)).map((element) => ({
       element,

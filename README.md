@@ -61,6 +61,8 @@ python -m http.server 8000 --bind 127.0.0.1
 
 `data-en` 用于纯文字。如果一段文字含有 `<strong>`、链接等子标签，请分别为子标签中的文字添加 `data-en`，保持原有结构。
 
+图中含有中英文文字时，用 `src` / `data-en-src` 指定两种语言的图片，用 `href` / `data-en-href` 指定对应的大图链接。具体示例见 `PROJECT_EDITING.md`。
+
 ## 发布
 
 网站仓库：https://github.com/My-85/My-85.github.io

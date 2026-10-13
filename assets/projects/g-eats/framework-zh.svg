@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="910" viewBox="0 0 1360 910" lang="zh" role="img" aria-labelledby="title desc">
+<title id="title">G-EATS · 把一条航迹变成飞机能执行的指令</title><desc id="desc">用姿态与空速目标连接航迹规划、学习飞控和真实动力学反馈。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2d5f94"/></marker></defs>
+<style>text{font-family:"Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;fill:#12243d}.title{font-size:38px;font-weight:700}.subtitle{font-size:25px;fill:#607080}.node-title{font-size:33px;font-weight:700}.body{font-size:26px;fill:#263545}.number{font-size:26px;fill:#fff;font-weight:700}.footer{font-size:26px;fill:#2d5f94}.label{font-size:24px;fill:#607080}</style>
+<rect width="1360" height="910" fill="#fff"/>
+<text x="62" y="78" class="title">G-EATS · 把一条航迹变成飞机能执行的指令</text>
+<text x="62" y="126" class="subtitle">用姿态与空速目标连接航迹规划、学习飞控和真实动力学反馈。</text>
+<path d="M 620 314 H 726" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 1010 448 V 508" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 740 632 H 634" fill="none" stroke="#2d5f94" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M 340 772 V 791 H 1020 V 782" fill="none" stroke="#2d5f94" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
+<rect x="60" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="247" r="23" fill="#2d5f94"/>
+<text x="100" y="257" class="number">1</text>
+<text x="148" y="258" class="node-title">参考机动航迹</text>
+<text x="92" y="324" class="body">S 形、八字与垂直爬升</text>
+<text x="92" y="372" class="body">定义局部几何与飞行目标</text>
+<rect x="740" y="196" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="247" r="23" fill="#2d5f94"/>
+<text x="780" y="257" class="number">2</text>
+<text x="828" y="258" class="node-title">可执行目标流</text>
+<text x="772" y="324" class="body">局部航向、俯仰、滚转、空速</text>
+<text x="772" y="372" class="body">闭环评估候选前视与速度参数</text>
+<rect x="740" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="788" cy="571" r="23" fill="#2d5f94"/>
+<text x="780" y="581" class="number">3</text>
+<text x="828" y="582" class="node-title">冻结的学习飞控</text>
+<text x="772" y="648" class="body">四元数条件策略 + 能量感知 PPO</text>
+<text x="772" y="696" class="body">输出油门与舵面指令</text>
+<rect x="60" y="520" width="560" height="250" rx="20" fill="#f6f8fa" stroke="#d9e0e6" stroke-width="2"/>
+<circle cx="108" cy="571" r="23" fill="#2d5f94"/>
+<text x="100" y="581" class="number">4</text>
+<text x="148" y="582" class="node-title">动力学与效果评估</text>
+<text x="92" y="648" class="body">非线性六自由度仿真反馈</text>
+<text x="92" y="696" class="body">几何误差、能量与飞行包线</text>
+<rect x="60" y="815" width="1240" height="62" rx="12" fill="#e8eff6"/>
+<text x="86" y="856" class="footer">同一飞控策略  +  任务相关的目标流  →  组合不同机动</text>
+</svg>

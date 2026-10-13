@@ -1,0 +1,78 @@
+{
+  "intro": [
+    "让固定翼飞机沿复杂航迹飞行，需要同时处理姿态、空速、升力方向与能量。我设计 G-EATS，用目标条件强化学习学会直接舵面控制，再将整段航迹转换成飞机可执行的姿态与空速目标流。",
+    "Following a complex path with a fixed-wing aircraft requires coordinated attitude, airspeed, lift direction, and energy. I designed G-EATS to learn direct actuator control with goal-conditioned RL, then convert a maneuver path into executable attitude and airspeed target streams."
+  ],
+  "bullets": [
+    [
+      "低层采用四元数条件飞控与能量感知 PPO；规划层评估候选目标流的前视距离与空速，在冻结飞控策略的条件下组合不同机动。",
+      "The low-level skill uses quaternion-conditioned control and energy-aware PPO. The planning layer evaluates lookahead and airspeed choices for target streams, composing maneuvers while keeping the flight policy frozen."
+    ],
+    [
+      "用轨迹偏离、速度切向、机头与机翼平面误差，以及能量和飞行包线指标共同评估执行质量。",
+      "Execution is evaluated through cross-track error, velocity-tangent, nose and wing-plane alignment, together with energy and flight-envelope metrics."
+    ],
+    [
+      "在所示 90° 爬升参数对比中，冻结同一 epoch 619 策略，仅调整目标流后，CTE-P90 由默认的 95.6 m 降至 51.1 m，约下降 47%（该任务的单次仿真记录）。",
+      "In the illustrated 90° pull-up comparison, the same frozen epoch-619 policy reduced CTE-P90 from the default 95.6 m to 51.1 m, about 47% lower, by changing the target stream (single simulation rollouts of this task)."
+    ]
+  ],
+  "images": [
+    [
+      "framework",
+      "svg",
+      true,
+      "G-EATS 从参考航迹到目标流、学习飞控与评测的框架",
+      "G-EATS reference-path, target-stream, learned-control and evaluation framework",
+      "目标流连接航迹与飞控；动力学反馈用于候选参数评估，几何与能量指标用于检验执行质量。点击图片可放大查看。",
+      "Target streams connect paths to flight skills. Closed-loop dynamics evaluate candidates; geometry and energy metrics assess execution quality. Click the image to enlarge."
+    ],
+    [
+      "target-stream-results",
+      "webp",
+      true,
+      "冻结飞控策略下三组目标流参数的 90 度爬升对比",
+      "90-degree pull-up with three target streams and the same frozen flight policy",
+      "三组记录均完成该爬升任务。最佳组合 L=1500 m、目标空速 280 m/s；CTE-P90 是轨迹偏离的 90 分位值，越低越好，不能单独概括全部安全与控制品质。",
+      "All three records completed this pull-up. The best pair uses L=1500 m and target speed 280 m/s. CTE-P90 is the 90th percentile of cross-track error; lower is better, and additional metrics assess safety and control quality."
+    ]
+  ],
+  "videos": [
+    [
+      "figure-eight",
+      false,
+      "G-EATS 八字机动仿真回放",
+      "G-EATS figure-eight simulation replay",
+      "八字机动：来自项目已有 Tacview 仿真录像，用连续目标流展示长航迹的机动组合。",
+      "Figure-eight maneuver from an existing Tacview simulation recording, illustrating maneuver composition through a continuous target stream."
+    ],
+    [
+      "vertical-arc-150",
+      false,
+      "G-EATS 150 度垂直圆弧机动仿真回放",
+      "G-EATS 150-degree vertical-arc simulation replay",
+      "150° 垂直圆弧机动：沿用项目已有录像；150° 指该示例的参考圆弧跨度。",
+      "150° vertical-arc maneuver from the existing project recording. The angle denotes the reference arc span in this example."
+    ]
+  ],
+  "links": [
+    [
+      "https://github.com/My-85/Energy-Aware-Target-Streams-for-Learned-Fixed-Wing-Maneuvering",
+      "代码与更多演示",
+      "Code and more demos",
+      "external"
+    ],
+    [
+      "#publications",
+      "论文信息",
+      "Paper information",
+      "internal"
+    ],
+    [
+      "assets/projects/g-eats/target-stream-comparison.csv",
+      "参数对比数据（CSV）",
+      "Parameter comparison (CSV)",
+      "download"
+    ]
+  ]
+}

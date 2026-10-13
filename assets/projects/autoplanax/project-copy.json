@@ -1,0 +1,49 @@
+{
+  "intro": [
+    "让大模型成为能提出假设、修改代码并从实验中学习的研究助手。我基于 Planax 搭建自动化强化学习研究闭环，把奖励设计、训练调度、策略评测和历史反馈连接起来。",
+    "I built an automated RL research loop on Planax so an LLM can propose hypotheses, revise code, and learn from actual experiments. The framework connects reward design, training orchestration, policy evaluation, and historical feedback."
+  ],
+  "bullets": [
+    [
+      "集成奖励反思、上下文进化搜索、分阶段修改权限、早停与 Git 回滚；保留更好的策略，同时归档淘汰与失败记录。",
+      "Integrated reward reflection, in-context evolutionary search, staged modification scopes, early stopping, and Git rollback. Stronger policies are retained alongside records of discarded and failed experiments."
+    ],
+    [
+      "在相同的 20 个连续姿态目标上复测，自动调优策略的平均四元数测地角误差由基础策略的 69.25° 降至 42.81°，约下降 38%（seed 42，单次顺序仿真）。",
+      "On the same 20 sequential attitude targets, the autotuned policy reduced mean quaternion geodesic error from the baseline’s 69.25° to 42.81°, about 38% lower (seed 42; one sequential simulation rollout)."
+    ],
+    [
+      "评估同时关注姿态误差、空速误差和终止情况，并关联实验假设、配置与 checkpoint，支持结果复查和下一轮迭代。",
+      "Evaluation tracks attitude error, airspeed error, and terminations, linking each result to its hypothesis, configuration, and checkpoint for review and the next iteration."
+    ]
+  ],
+  "images": [
+    [
+      "framework",
+      "svg",
+      true,
+      "AutoPlanax 自动实验闭环框架",
+      "AutoPlanax automated research loop",
+      "实验结果决定方案是否保留，再反馈给下一轮假设生成。点击图片可放大查看。",
+      "Measured results decide what to keep and inform the next hypothesis. Click the image to enlarge."
+    ],
+    [
+      "tracking-results",
+      "webp",
+      true,
+      "基础与自动调优策略在同一组姿态目标上的误差对比",
+      "Baseline and autotuned policies on identical attitude targets",
+      "统一扩展评测：20 个目标，每目标 50 秒。左图逐目标取均值，右图统计全部 5000 个时间步；单次 seed 42 记录，误差越低越好。",
+      "Expanded evaluation: 20 targets, 50 s each. Left: per-target means; right: all 5,000 timesteps. One seed-42 rollout; lower error is better."
+    ]
+  ],
+  "videos": [],
+  "links": [
+    [
+      "assets/projects/autoplanax/tracking-evaluation.csv",
+      "评测数据（CSV）",
+      "Evaluation data (CSV)",
+      "download"
+    ]
+  ]
+}

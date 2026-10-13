@@ -1,0 +1,16 @@
+component,framework,mode,batch_size,rollout_steps,repeats,warmups,mean_seconds,std_seconds,sps_mean,device,dtype,sync_method,includes_data_generation,includes_cpu_gpu_transfer,status
+rollout,jax,jit,100,10,5,2,0.008118375,0.000496213,12317.736396,cuda:0,float32,jax.block_until_ready,false,false,ok
+rollout,pytorch,eager,100,10,5,2,0.287940268,0.003354915,347.294252,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,pytorch,compile,100,10,5,2,0.016975952,0.000030539,5890.685760,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,jax,jit,1000,10,5,2,0.008236009,0.000444120,121418.033208,cuda:0,float32,jax.block_until_ready,false,false,ok
+rollout,pytorch,eager,1000,10,5,2,0.286035477,0.001793032,3496.069819,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,pytorch,compile,1000,10,5,2,0.017041240,0.000048290,58681.175208,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,jax,jit,10000,10,5,2,0.007987985,0.000724661,1251880.135998,cuda:0,float32,jax.block_until_ready,false,false,ok
+rollout,pytorch,eager,10000,10,5,2,0.292196693,0.000283888,34223.522212,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,pytorch,compile,10000,10,5,2,0.017170451,0.000017189,582395.890199,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,jax,jit,100000,10,5,2,0.007598779,0.000408884,13160009.356884,cuda:0,float32,jax.block_until_ready,false,false,ok
+rollout,pytorch,eager,100000,10,5,2,0.369236353,0.016636718,270829.237769,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,pytorch,compile,100000,10,5,2,0.018160948,0.000018791,5506320.606760,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,jax,jit,1000000,10,5,2,0.032572412,0.000148033,30700827.324903,cuda:0,float32,jax.block_until_ready,false,false,ok
+rollout,pytorch,eager,1000000,10,5,2,0.440317178,0.000124700,2271090.136488,cuda:0,float32,torch.cuda.synchronize,false,false,ok
+rollout,pytorch,compile,1000000,10,5,2,0.056496225,0.000029238,17700297.552386,cuda:0,float32,torch.cuda.synchronize,false,false,ok

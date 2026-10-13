@@ -69,6 +69,19 @@ assets/projects/planax/
 
 GIF 的用法与图片相同，将 `src` 改为实际 `.gif` 文件路径即可。
 
+图片内含中英文文字时，可以提供两份图片：`src` 指向中文版，`data-en-src` 指向英文版。点击打开的大图链接同样用 `href` 和 `data-en-href` 分别指定，切换语言时会一起更新。例如：
+
+```html
+<a href="assets/projects/planax/framework-zh.svg"
+   data-en-href="assets/projects/planax/framework-en.svg"
+   target="_blank" rel="noopener noreferrer">
+  <img src="assets/projects/planax/framework-zh.svg"
+       data-en-src="assets/projects/planax/framework-en.svg"
+       alt="Planax 框架图" data-en-alt="Planax architecture"
+       loading="lazy">
+</a>
+```
+
 一张图会占满宽度；多张图默认在桌面端排列为两列、手机端排列为一列。添加 `is-wide` 可以让框架图或宽屏演示占满整行。
 
 ## 5. 加 MP4 视频

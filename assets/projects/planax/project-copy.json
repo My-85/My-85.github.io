@@ -1,0 +1,76 @@
+{
+  "intro": [
+    "我主导研发基于 JAX/XLA 的固定翼仿真平台，把非线性六自由度动力学、气动查表、环境反馈和强化学习放进 GPU 并行闭环，让大规模训练建立在飞行物理上。",
+    "I led development of a JAX/XLA fixed-wing simulation platform that combines nonlinear six-degree-of-freedom dynamics, aerodynamic lookup tables, environment feedback, and RL in a batched GPU loop, bringing flight physics to large-scale learning."
+  ],
+  "bullets": [
+    [
+      "Tensor-LUT 在 GPU 上批量查询和插值气动系数；统一接口覆盖单机跟踪、编队协作与集群交互，并部署 PPO、MAPPO 和分层强化学习。",
+      "Tensor-LUT evaluates aerodynamic coefficients through batched GPU lookup and interpolation. A shared interface supports single-aircraft tracking, formation, and swarm interaction with PPO, MAPPO, and hierarchical RL."
+    ],
+    [
+      "完成 50v50 集群自博弈训练；下方提供 100 架飞机同时交互的已有仿真回放，直观展示平台承载的场景规模。",
+      "Completed 50-vs-50 swarm self-play training. The existing replay below shows 100 aircraft interacting, illustrating the scale of the supported scenarios."
+    ],
+    [
+      "在 A100 80GB、100 万并行样本的 10 步动力学 rollout 测试中，实测约 3070 万条短轨迹/秒；同模型下为 PyTorch eager 的 13.5 倍、torch.compile 的 1.73 倍。",
+      "For 10-step dynamics rollouts with one million parallel samples on an A100 80GB, measured throughput was about 30.7 million short rollouts/s: 13.5× PyTorch eager and 1.73× torch.compile with the same physics model."
+    ]
+  ],
+  "images": [
+    [
+      "framework",
+      "svg",
+      true,
+      "Planax 并行仿真与强化学习框架",
+      "Planax parallel simulation and reinforcement-learning architecture",
+      "从飞机状态与控制输入，到气动计算、状态推进和策略训练。点击图片可放大查看。",
+      "From aircraft states and control inputs to aerodynamics, state updates, and policy training. Click the image to enlarge."
+    ],
+    [
+      "benchmark",
+      "webp",
+      true,
+      "Planax 与同模型 PyTorch 实现的并行吞吐量对比",
+      "Planax and PyTorch throughput with the same dynamics model",
+      "A100 80GB，float32，10 步 rollout，预热后测量 5 次并同步 GPU；不含数据生成和传输。单位是一条 10 步短轨迹，并非 PPO 训练吞吐量。",
+      "A100 80GB; float32; 10-step rollouts; 5 warmed, GPU-synchronized measurements; excludes data generation and transfer. Each sample is a short 10-step trajectory, rather than an end-to-end PPO training step."
+    ]
+  ],
+  "videos": [
+    [
+      "swarm-50v50",
+      true,
+      "50v50 无人机集群仿真回放",
+      "50-vs-50 UAV swarm simulation replay",
+      "50v50 集群交互：已有 Tacview 录像转为 MP4，保留原录像播放速度。红蓝两队共 100 架飞机；本片展示场景规模，不单独证明策略胜率。",
+      "50-vs-50 swarm interaction: an existing Tacview recording converted to MP4 at its original playback speed. Two teams total 100 aircraft; the clip demonstrates scenario scale, while win rates require evaluation data."
+    ]
+  ],
+  "links": [
+    [
+      "https://github.com/My-85/Aeroplanax",
+      "代码仓库",
+      "Code repository",
+      "external"
+    ],
+    [
+      "#publications",
+      "论文信息",
+      "Paper information",
+      "internal"
+    ],
+    [
+      "assets/projects/planax/swarm-50v50.mp4",
+      "打开集群演示",
+      "Open swarm demo",
+      "external"
+    ],
+    [
+      "assets/projects/planax/benchmark.csv",
+      "基准数据（CSV）",
+      "Benchmark data (CSV)",
+      "download"
+    ]
+  ]
+}
