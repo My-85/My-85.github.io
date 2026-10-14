@@ -751,6 +751,10 @@ html:not(.js) .language-switch {
   background: var(--blue-light);
 }
 
+.project-resource-links a:only-child {
+  grid-column: 1 / -1;
+}
+
 html:not(.js) .project-resource-hint,
 html:not(.js) .project-resource-icon {
   display: none;

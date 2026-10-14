@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://my-85.github.io/assets/qinyu-dong-og.webp">
   <link rel="canonical" href="https://my-85.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261014-project-links">
+  <link rel="stylesheet" href="styles.css?v=20261014-worldprior-link">
   <title data-en="Qinyu Dong | Academic Homepage">董沁雨 | 学术主页</title>
   <script>document.documentElement.classList.add("js");</script>
   <script type="application/ld+json">
@@ -213,16 +213,20 @@
           </header>
           <div class="project-list">
             <!-- PROJECT worldprior: START; media folder: assets/projects/worldprior/ -->
-            <article id="project-worldprior" data-project="worldprior">
+            <article id="project-worldprior" data-project="worldprior" data-project-resources>
               <div class="project-meta"><time><span data-en="May – September 2026">2026 年 5 月至 9 月</span></time><span><span data-en="Core Team Member">项目核心成员</span></span></div>
-              <h3><span data-en="WorldPrior: Multimodal Semantic Distillation for Latent World Models">WorldPrior：多模态语义蒸馏增强潜在世界模型</span></h3>
+              <h3><button class="project-resource-toggle" type="button" id="resource-toggle-worldprior" data-project-toggle aria-controls="resource-options-worldprior" aria-expanded="false"><span data-en="WorldPrior: Multimodal Semantic Distillation for Latent World Models">WorldPrior：多模态语义蒸馏增强潜在世界模型</span><span class="project-resource-icon" aria-hidden="true">+</span></button></h3>
               <p><span data-en="Designed a semantic distillation framework that internalizes priors from a frozen vision-language model. Cosine alignment loss and a reference predictor retention loss enhance semantic understanding while preserving predictive capability.">设计无需教师模型推理的语义蒸馏框架，将冻结视觉语言模型的多模态先验知识注入潜在世界模型；通过余弦对齐损失与参考预测器保持损失，实现语义增强与预测能力保持。</span></p>
               <ul>
                 <li><span data-en="Trained and evaluated Stable World Model on PushT, TwoRoom, Reacher, and Cube robotic-control tasks.">在 PushT、TwoRoom、Reacher、Cube 等机器人控制任务上完成 Stable World Model 的训练、评测与实验分析。</span></li>
                 <li><span data-en="Achieved a 90% closed-loop control success rate; improved TwoRoom, Reacher, and Cube by 8, 4, and 6 percentage points, respectively.">闭环控制成功率提升至 90%；TwoRoom、Reacher、Cube 分别提升 8、4、6 个百分点。</span></li>
               </ul>
-              <!-- Add project images, GIFs or videos inside the container below. See PROJECT_EDITING.md. -->
-              <div class="project-media" data-project-media></div>
+              <p class="project-resource-hint"><span data-en="Hover or tap to view project resources">悬停或点按查看项目资料</span></p>
+              <div class="project-resource-options" id="resource-options-worldprior" data-project-options aria-labelledby="resource-toggle-worldprior" hidden>
+                <p class="project-resource-label"><span data-en="Open in a new tab">在新窗口查看</span></p>
+                <div class="project-resource-links"><a href="https://github.com/My-85/Internalizing-Multimodal-Semantics-into-Latent-World-Models" target="_blank" rel="noopener noreferrer"><span data-en="Code repository">代码仓库</span> <span aria-hidden="true">&#8599;</span></a></div>
+              </div>
+              <noscript><p class="project-links"><a href="https://github.com/My-85/Internalizing-Multimodal-Semantics-into-Latent-World-Models" target="_blank" rel="noopener noreferrer">代码仓库 / Code repository</a></p></noscript>
             </article>
             <!-- PROJECT worldprior: END -->
             <!-- PROJECT autoplanax: START; media folder: assets/projects/autoplanax/ -->
