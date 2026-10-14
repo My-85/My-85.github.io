@@ -1,0 +1,36 @@
+{
+  "checkpoint": "9a45713d3f392f7762758b27535e8057f271035880f00bbd99197efcde878bc0",
+  "runtime": "TensorRT 10.9.0.34",
+  "provider": "TensorRT",
+  "precision": "float32",
+  "model_graphs": 25,
+  "physical_backend": "original JAX A4 GPU FP32",
+  "neural_jax_fallback": false,
+  "global_bitwise_equivalence_claim": false,
+  "archived_controls": 1446,
+  "archived_actions_exact": true,
+  "closed_loop_cases": [
+    {
+      "name": "straight_4km",
+      "controls": 81,
+      "exact": true,
+      "original_rollout_seconds": 20.24064533598721,
+      "tensorrt_rollout_seconds": 17.250997990369797,
+      "speedup": 1.1733028632480484,
+      "original_postflight_audit_seconds": 0.37733730114996433,
+      "tensorrt_postflight_audit_seconds": 0.042846791446208954
+    },
+    {
+      "name": "s_maneuver",
+      "controls": 293,
+      "exact": true,
+      "original_rollout_seconds": 52.55400615185499,
+      "tensorrt_rollout_seconds": 45.18513416312635,
+      "speedup": 1.16308177734132,
+      "original_postflight_audit_seconds": 0.4812269974499941,
+      "tensorrt_postflight_audit_seconds": 0.15163355506956577
+    }
+  ],
+  "timing_scope": "warmed identical bounded rollout, excludes postflight replay audit; one measured pair per route",
+  "summary": "TensorRT FP32 · 原 9a 模型与 GPU 物理仿真 · 两条对照路线的动作与航迹一致，飞行计算耗时缩短约 14%–15%"
+}
