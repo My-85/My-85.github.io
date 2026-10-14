@@ -4,12 +4,12 @@
  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
  <title>固定翼无人飞行器 三维飞行实验室</title>
  <meta name="description" content="固定翼无人飞行器的真实三维航迹回放与自定义路线试飞。">
- <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=14">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=15">
  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
 </head>
 <body>
  <header><a class="brand" href="./" title="GIFT: Geometry-guided Imitation for Flight Tracking" aria-label="GIFT: Geometry-guided Imitation for Flight Tracking，返回首页"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M18 3 22 15 33 24 32 28 21 23 21 30 25 33 18 31 11 33 15 30 15 23 4 28 3 24 14 15Z"/></svg><span><strong>GIFT</strong> <small>FIXED-WING FLIGHT LAB</small></span></a><nav><a href="#explore"><span class="nav-index">01 / </span>飞行回放</a><a href="custom.html"><span class="nav-index">02 / </span>自定义试飞</a><a href="report.html">研究汇报 ↗</a><a href="https://github.com/My-85" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
- <main>
+ <main><div id="boot-status" class="boot-status" role="status">正在读取三维视图与航迹…</div>
  <section class="intro"><div><h1>固定翼无人飞行器 三维飞行实验室</h1></div><a class="primary button" href="custom.html">自定义路线试飞 →</a></section>
  <section id="explore" class="explorer">
   <div class="section-title"><div><div class="eyebrow">01 / 真实飞行记录</div><h2>真实飞行回放</h2></div><span class="replay-tag">记录回放 · 非在线推理</span></div>
@@ -23,5 +23,5 @@
   </div>
  </section>
  </main><footer><span>GIFT · 固定翼无人飞行器 / 2026.10.12</span><a href="report.md" download>下载汇报 Markdown ↓</a><a href="https://github.com/My-85" target="_blank" rel="noopener">My-85 / GitHub ↗</a></footer>
- <script type="module" src="app.js?v=14"></script>
-</body></html>
+ <script type="module" src="client/replay.js?v=15"></script>
+<script>(()=>{const notice=document.getElementById('boot-status');const timer=setInterval(()=>{const ready=document.body.dataset.custom?window.__customReady:window.__flightReady;if(ready){notice.hidden=true;clearInterval(timer);}},500);setTimeout(()=>{if(notice.hidden)return;notice.textContent='三维资源加载较慢。';const retry=document.createElement('button');retry.textContent='刷新重试';retry.onclick=()=>location.reload();const fallback=document.createElement('a');fallback.textContent='打开原站点';fallback.href='https://planax-a4-flight-lab.dqy479728512.chatgpt.site/'+(document.body.dataset.custom?'custom.html':'index.html');notice.append(retry,fallback);},12000);})();</script></body></html>
