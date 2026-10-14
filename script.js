@@ -102,6 +102,78 @@
     });
   }
 
+  const resourceCards = Array.from(document.querySelectorAll("[data-project-resources]"));
+  const canHover = window.matchMedia("(hover: hover)");
+  let activeResourceCard = null;
+  let resourcesPinned = false;
+  let waitForResourcePointerMove = false;
+
+  const closeResources = (returnFocus = false) => {
+    if (!activeResourceCard) return;
+    const card = activeResourceCard;
+    card.querySelector("[data-project-options]").hidden = true;
+    card.querySelector("[data-project-toggle]").setAttribute("aria-expanded", "false");
+    card.classList.remove("is-resource-open");
+    activeResourceCard = null;
+    resourcesPinned = false;
+    if (returnFocus) card.querySelector("[data-project-toggle]").focus({ preventScroll: true });
+  };
+
+  const openResources = (card, pin = false) => {
+    if (activeResourceCard !== card) closeResources();
+    activeResourceCard = card;
+    resourcesPinned = resourcesPinned || pin;
+    card.querySelector("[data-project-options]").hidden = false;
+    card.querySelector("[data-project-toggle]").setAttribute("aria-expanded", "true");
+    card.classList.add("is-resource-open");
+  };
+
+  const toggleResources = (card) => {
+    if (activeResourceCard === card && resourcesPinned) closeResources();
+    else openResources(card, true);
+  };
+
+  resourceCards.forEach((card) => {
+    card.addEventListener("pointerenter", (event) => {
+      if (!waitForResourcePointerMove && canHover.matches && event.pointerType !== "touch") openResources(card);
+    });
+    card.addEventListener("pointerleave", () => {
+      if (activeResourceCard === card && !resourcesPinned && !card.contains(document.activeElement)) closeResources();
+    });
+    card.querySelector("[data-project-toggle]").addEventListener("click", () => toggleResources(card));
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button, [data-project-options]") || window.getSelection()?.toString()) return;
+      toggleResources(card);
+    });
+    card.querySelector("[data-project-options]").addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        waitForResourcePointerMove = true;
+        closeResources(true);
+      }
+    });
+    card.addEventListener("focusout", (event) => {
+      if (activeResourceCard === card && !card.contains(event.relatedTarget)) closeResources();
+    });
+  });
+
+  if (resourceCards.length) {
+    document.addEventListener("pointermove", (event) => {
+      if (!waitForResourcePointerMove) return;
+      waitForResourcePointerMove = false;
+      const card = event.target.closest("[data-project-resources]");
+      if (card && canHover.matches && event.pointerType !== "touch") openResources(card);
+    }, { passive: true });
+    document.addEventListener("click", (event) => {
+      if (activeResourceCard && !activeResourceCard.contains(event.target)) closeResources();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && activeResourceCard) {
+        event.preventDefault();
+        closeResources(true);
+      }
+    });
+  }
+
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealItems = document.querySelectorAll("[data-reveal]");
 

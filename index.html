@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://my-85.github.io/assets/qinyu-dong-og.webp">
   <link rel="canonical" href="https://my-85.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261013-bilingual">
+  <link rel="stylesheet" href="styles.css?v=20261014-project-links">
   <title data-en="Qinyu Dong | Academic Homepage">董沁雨 | 学术主页</title>
   <script>document.documentElement.classList.add("js");</script>
   <script type="application/ld+json">
@@ -226,145 +226,71 @@
             </article>
             <!-- PROJECT worldprior: END -->
             <!-- PROJECT autoplanax: START; media folder: assets/projects/autoplanax/ -->
-            <article id="project-autoplanax" data-project="autoplanax">
+            <article id="project-autoplanax" data-project="autoplanax" data-project-resources>
               <div class="project-meta"><time><span data-en="February – September 2026">2026 年 2 月至 9 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
-              <h3><span data-en="AutoPlanax: Agentic Framework for Automated RL Research">AutoPlanax：面向自动化强化学习研究的智能体框架</span></h3>
-              <p><span data-en="I built an automated RL research loop on Planax so an LLM can propose hypotheses, revise code, and learn from actual experiments. The framework connects reward design, training orchestration, policy evaluation, and historical feedback.">让大模型成为能提出假设、修改代码并从实验中学习的研究助手。我基于 Planax 搭建自动化强化学习研究闭环，把奖励设计、训练调度、策略评测和历史反馈连接起来。</span></p>
+              <h3><button class="project-resource-toggle" type="button" id="resource-toggle-autoplanax" data-project-toggle aria-controls="resource-options-autoplanax" aria-expanded="false"><span data-en="AutoPlanax: Agentic Framework for Automated RL Research">AutoPlanax：面向自动化强化学习研究的智能体框架</span><span class="project-resource-icon" aria-hidden="true">+</span></button></h3>
+              <p><span data-en="Built a Python and LLM-API framework on Planax to connect hypothesis generation, code revision, training, evaluation, and historical feedback. The workflow combines reward reflection, in-context evolutionary search, staged permissions, early stopping, and automatic Git rollback.">基于 Python、大模型 API 与 Planax 平台，构建串联假设生成、代码修改、训练调度、指标评估和历史反馈的自动化 RL 研究框架，集成奖励反思、上下文进化搜索、渐进式权限释放、早停与 Git 自动回滚。</span></p>
               <ul>
-                <li><span data-en="Integrated reward reflection, in-context evolutionary search, staged modification scopes, early stopping, and Git rollback. Stronger policies are retained alongside records of discarded and failed experiments.">集成奖励反思、上下文进化搜索、分阶段修改权限、早停与 Git 回滚；保留更好的策略，同时归档淘汰与失败记录。</span></li>
-                <li><span data-en="On the same 20 sequential attitude targets, the autotuned policy reduced mean quaternion geodesic error from the baseline’s 69.25° to 42.81°, about 38% lower (seed 42; one sequential simulation rollout).">在相同的 20 个连续姿态目标上复测，自动调优策略的平均四元数测地角误差由基础策略的 69.25° 降至 42.81°，约下降 38%（seed 42，单次顺序仿真）。</span></li>
-                <li><span data-en="Evaluation tracks attitude error, airspeed error, and terminations, linking each result to its hypothesis, configuration, and checkpoint for review and the next iteration.">评估同时关注姿态误差、空速误差和终止情况，并关联实验假设、配置与 checkpoint，支持结果复查和下一轮迭代。</span></li>
+                <li><span data-en="Completed 100 automated experiments.">完成 100 轮自动化实验。</span></li>
+                <li><span data-en="Reduced the best-performing policy&#x27;s tracking error from more than 90° to 20°, measured as a geodesic angle in quaternion space.">冠军策略的跟踪误差从超过 90° 降至 20°，采用四元数空间测地角衡量。</span></li>
               </ul>
-              <p class="project-links">
-                <a href="assets/projects/autoplanax/tracking-evaluation.csv" download><span data-en="Evaluation data (CSV)">评测数据（CSV）</span></a>
-              </p>
-              <div class="project-media" data-project-media>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/autoplanax/framework-zh.svg" data-en-href="assets/projects/autoplanax/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="AutoPlanax 自动实验闭环框架（打开大图）" data-en-aria-label="AutoPlanax automated research loop (open full-size image)">
-                    <img src="assets/projects/autoplanax/framework-zh.svg" data-en-src="assets/projects/autoplanax/framework-en.svg" width="1360" height="910" alt="AutoPlanax 自动实验闭环框架" data-en-alt="AutoPlanax automated research loop" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="Measured results decide what to keep and inform the next hypothesis. Click the image to enlarge.">实验结果决定方案是否保留，再反馈给下一轮假设生成。点击图片可放大查看。</span></figcaption>
-                </figure>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/autoplanax/tracking-results-zh.svg" data-en-href="assets/projects/autoplanax/tracking-results-en.svg" target="_blank" rel="noopener noreferrer" aria-label="基础与自动调优策略在同一组姿态目标上的误差对比（打开大图）" data-en-aria-label="Baseline and autotuned policies on identical attitude targets (open full-size image)">
-                    <img src="assets/projects/autoplanax/tracking-results-zh.webp" data-en-src="assets/projects/autoplanax/tracking-results-en.webp" width="1600" height="1024" alt="基础与自动调优策略在同一组姿态目标上的误差对比" data-en-alt="Baseline and autotuned policies on identical attitude targets" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="Expanded evaluation: 20 targets, 50 s each. Left: per-target means; right: all 5,000 timesteps. One seed-42 rollout; lower error is better.">统一扩展评测：20 个目标，每目标 50 秒。左图逐目标取均值，右图统计全部 5000 个时间步；单次 seed 42 记录，误差越低越好。</span></figcaption>
-                </figure>
+            <p class="project-resource-hint"><span data-en="Hover or tap to view project resources">悬停或点按查看项目资料</span></p>
+              <div class="project-resource-options" id="resource-options-autoplanax" data-project-options aria-labelledby="resource-toggle-autoplanax" hidden>
+                <p class="project-resource-label"><span data-en="Open in a new tab">在新窗口查看</span></p>
+                <div class="project-resource-links"><a href="projects/autoplanax.html?lang=zh" data-en-href="projects/autoplanax.html?lang=en" target="_blank" rel="noopener noreferrer"><span data-en="Project details">项目详情</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/autoplanax.html?lang=zh#framework" data-en-href="projects/autoplanax.html?lang=en#framework" target="_blank" rel="noopener noreferrer"><span data-en="Framework">研究框架</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/autoplanax.html?lang=zh#results" data-en-href="projects/autoplanax.html?lang=en#results" target="_blank" rel="noopener noreferrer"><span data-en="Results">评测结果</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/autoplanax.html?lang=zh#data" data-en-href="projects/autoplanax.html?lang=en#data" target="_blank" rel="noopener noreferrer"><span data-en="Data">实验数据</span> <span aria-hidden="true">&#8599;</span></a></div>
               </div>
+              <noscript><p class="project-links"><a href="projects/autoplanax.html" target="_blank" rel="noopener noreferrer">查看项目详情 / Project details</a></p></noscript>
             </article>
             <!-- PROJECT autoplanax: END -->
             <!-- PROJECT planax: START; media folder: assets/projects/planax/ -->
-            <article id="project-planax" data-project="planax">
+            <article id="project-planax" data-project="planax" data-project-resources>
               <div class="project-meta"><time><span data-en="March 2025 – March 2026">2025 年 3 月至 2026 年 3 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
-              <h3><span data-en="Planax: Parallel Simulation &amp; Reinforcement Learning for UAV Swarms">Planax：大规模无人机集群并行仿真与强化学习平台</span></h3>
-              <p><span data-en="I led development of a JAX/XLA fixed-wing simulation platform that combines nonlinear six-degree-of-freedom dynamics, aerodynamic lookup tables, environment feedback, and RL in a batched GPU loop, bringing flight physics to large-scale learning.">我主导研发基于 JAX/XLA 的固定翼仿真平台，把非线性六自由度动力学、气动查表、环境反馈和强化学习放进 GPU 并行闭环，让大规模训练建立在飞行物理上。</span></p>
+              <h3><button class="project-resource-toggle" type="button" id="resource-toggle-planax" data-project-toggle aria-controls="resource-options-planax" aria-expanded="false"><span data-en="Planax: Parallel Simulation &amp; Reinforcement Learning for UAV Swarms">Planax：大规模无人机集群并行仿真与强化学习平台</span><span class="project-resource-icon" aria-hidden="true">+</span></button></h3>
+              <p><span data-en="Led development of a high-fidelity JAX/XLA simulation platform that balances physical realism with large-scale reinforcement-learning throughput.">主导研发基于 JAX/XLA 的高保真并行仿真平台，兼顾物理逼真度与大规模强化学习训练效率。</span></p>
               <ul>
-                <li><span data-en="Tensor-LUT evaluates aerodynamic coefficients through batched GPU lookup and interpolation. A shared interface supports single-aircraft tracking, formation, and swarm interaction with PPO, MAPPO, and hierarchical RL.">Tensor-LUT 在 GPU 上批量查询和插值气动系数；统一接口覆盖单机跟踪、编队协作与集群交互，并部署 PPO、MAPPO 和分层强化学习。</span></li>
-                <li><span data-en="Completed 50-vs-50 swarm self-play training. The existing replay below shows 100 aircraft interacting, illustrating the scale of the supported scenarios.">完成 50v50 集群自博弈训练；下方提供 100 架飞机同时交互的已有仿真回放，直观展示平台承载的场景规模。</span></li>
-                <li><span data-en="For 10-step dynamics rollouts with one million parallel samples on an A100 80GB, measured throughput was about 30.7 million short rollouts/s: 13.5× PyTorch eager and 1.73× torch.compile with the same physics model.">在 A100 80GB、100 万并行样本的 10 步动力学 rollout 测试中，实测约 3070 万条短轨迹/秒；同模型下为 PyTorch eager 的 13.5 倍、torch.compile 的 1.73 倍。</span></li>
+                <li><span data-en="Implemented PPO, MAPPO, and hierarchical RL; completed 50-vs-50 UAV swarm self-play training.">部署 PPO、MAPPO 与分层强化学习算法，完成 50v50 无人机集群自博弈训练。</span></li>
+                <li><span data-en="Achieved more than 10× the simulation speed of NeuralPlane in the reported benchmark; one invention patent application was accepted for processing.">在所报告的基准实验中，运行速度较 NeuralPlane 提升 10 倍以上；一项发明专利申请已获受理。</span></li>
               </ul>
-              <p class="project-links">
-                <a href="https://github.com/My-85/Aeroplanax" target="_blank" rel="noopener noreferrer"><span data-en="Code repository">代码仓库</span></a>
-                <a href="#publications"><span data-en="Paper information">论文信息</span></a>
-                <a href="assets/projects/planax/swarm-50v50.mp4" target="_blank" rel="noopener noreferrer"><span data-en="Open swarm demo">打开集群演示</span></a>
-                <a href="assets/projects/planax/benchmark.csv" download><span data-en="Benchmark data (CSV)">基准数据（CSV）</span></a>
-              </p>
-              <div class="project-media" data-project-media>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/planax/framework-zh.svg" data-en-href="assets/projects/planax/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="Planax 并行仿真与强化学习框架（打开大图）" data-en-aria-label="Planax parallel simulation and reinforcement-learning architecture (open full-size image)">
-                    <img src="assets/projects/planax/framework-zh.svg" data-en-src="assets/projects/planax/framework-en.svg" width="1360" height="910" alt="Planax 并行仿真与强化学习框架" data-en-alt="Planax parallel simulation and reinforcement-learning architecture" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="From aircraft states and control inputs to aerodynamics, state updates, and policy training. Click the image to enlarge.">从飞机状态与控制输入，到气动计算、状态推进和策略训练。点击图片可放大查看。</span></figcaption>
-                </figure>
-                <figure class="project-media-item is-wide">
-                  <video controls playsinline preload="metadata" poster="assets/projects/planax/swarm-50v50-poster.webp" aria-label="50v50 无人机集群仿真回放" data-en-aria-label="50-vs-50 UAV swarm simulation replay">
-                    <source src="assets/projects/planax/swarm-50v50.mp4" type="video/mp4">
-                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
-                  </video>
-                  <figcaption><span data-en="50-vs-50 swarm interaction: an existing Tacview recording converted to MP4 at its original playback speed. Two teams total 100 aircraft; the clip demonstrates scenario scale, while win rates require evaluation data.">50v50 集群交互：已有 Tacview 录像转为 MP4，保留原录像播放速度。红蓝两队共 100 架飞机；本片展示场景规模，不单独证明策略胜率。</span></figcaption>
-                </figure>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/planax/benchmark-zh.svg" data-en-href="assets/projects/planax/benchmark-en.svg" target="_blank" rel="noopener noreferrer" aria-label="Planax 与同模型 PyTorch 实现的并行吞吐量对比（打开大图）" data-en-aria-label="Planax and PyTorch throughput with the same dynamics model (open full-size image)">
-                    <img src="assets/projects/planax/benchmark-zh.webp" data-en-src="assets/projects/planax/benchmark-en.webp" width="1600" height="1024" alt="Planax 与同模型 PyTorch 实现的并行吞吐量对比" data-en-alt="Planax and PyTorch throughput with the same dynamics model" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="A100 80GB; float32; 10-step rollouts; 5 warmed, GPU-synchronized measurements; excludes data generation and transfer. Each sample is a short 10-step trajectory, rather than an end-to-end PPO training step.">A100 80GB，float32，10 步 rollout，预热后测量 5 次并同步 GPU；不含数据生成和传输。单位是一条 10 步短轨迹，并非 PPO 训练吞吐量。</span></figcaption>
-                </figure>
+            <p class="project-resource-hint"><span data-en="Hover or tap to view project resources">悬停或点按查看项目资料</span></p>
+              <div class="project-resource-options" id="resource-options-planax" data-project-options aria-labelledby="resource-toggle-planax" hidden>
+                <p class="project-resource-label"><span data-en="Open in a new tab">在新窗口查看</span></p>
+                <div class="project-resource-links"><a href="projects/planax.html?lang=zh" data-en-href="projects/planax.html?lang=en" target="_blank" rel="noopener noreferrer"><span data-en="Project details">项目详情</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/planax.html?lang=zh#framework" data-en-href="projects/planax.html?lang=en#framework" target="_blank" rel="noopener noreferrer"><span data-en="Framework">研究框架</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/planax.html?lang=zh#results" data-en-href="projects/planax.html?lang=en#results" target="_blank" rel="noopener noreferrer"><span data-en="Results">评测结果</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/planax.html?lang=zh#demos" data-en-href="projects/planax.html?lang=en#demos" target="_blank" rel="noopener noreferrer"><span data-en="Demos">演示视频</span> <span aria-hidden="true">&#8599;</span></a> <a href="https://github.com/My-85/Aeroplanax" target="_blank" rel="noopener noreferrer"><span data-en="Code repository">代码仓库</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/planax.html?lang=zh#data" data-en-href="projects/planax.html?lang=en#data" target="_blank" rel="noopener noreferrer"><span data-en="Data">实验数据</span> <span aria-hidden="true">&#8599;</span></a></div>
               </div>
+              <noscript><p class="project-links"><a href="projects/planax.html" target="_blank" rel="noopener noreferrer">查看项目详情 / Project details</a></p></noscript>
             </article>
             <!-- PROJECT planax: END -->
             <!-- PROJECT g-eats: START; media folder: assets/projects/g-eats/ -->
-            <article id="project-g-eats" data-project="g-eats">
+            <article id="project-g-eats" data-project="g-eats" data-project-resources>
               <div class="project-meta"><time><span data-en="March – May 2026">2026 年 3 月至 5 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
-              <h3><span data-en="G-EATS: Goal-Conditioned RL for Agile Fixed-Wing Control">G-EATS：目标条件强化学习与固定翼高机动控制</span></h3>
-              <p><span data-en="Following a complex path with a fixed-wing aircraft requires coordinated attitude, airspeed, lift direction, and energy. I designed G-EATS to learn direct actuator control with goal-conditioned RL, then convert a maneuver path into executable attitude and airspeed target streams.">让固定翼飞机沿复杂航迹飞行，需要同时处理姿态、空速、升力方向与能量。我设计 G-EATS，用目标条件强化学习学会直接舵面控制，再将整段航迹转换成飞机可执行的姿态与空速目标流。</span></p>
+              <h3><button class="project-resource-toggle" type="button" id="resource-toggle-g-eats" data-project-toggle aria-controls="resource-options-g-eats" aria-expanded="false"><span data-en="G-EATS: Goal-Conditioned RL for Agile Fixed-Wing Control">G-EATS：目标条件强化学习与固定翼高机动控制</span><span class="project-resource-icon" aria-hidden="true">+</span></button></h3>
+              <p><span data-en="Designed a goal-conditioned flight policy for direct actuator control in quaternion state space, with energy-aware PPO and closed-loop target-stream optimization.">设计目标条件强化学习飞控策略，在四元数状态空间下实现直接舵面控制，并结合能量感知 PPO 与闭环目标流优化。</span></p>
               <ul>
-                <li><span data-en="The low-level skill uses quaternion-conditioned control and energy-aware PPO. The planning layer evaluates lookahead and airspeed choices for target streams, composing maneuvers while keeping the flight policy frozen.">低层采用四元数条件飞控与能量感知 PPO；规划层评估候选目标流的前视距离与空速，在冻结飞控策略的条件下组合不同机动。</span></li>
-                <li><span data-en="Execution is evaluated through cross-track error, velocity-tangent, nose and wing-plane alignment, together with energy and flight-envelope metrics.">用轨迹偏离、速度切向、机头与机翼平面误差，以及能量和飞行包线指标共同评估执行质量。</span></li>
-                <li><span data-en="In the illustrated 90° pull-up comparison, the same frozen epoch-619 policy reduced CTE-P90 from the default 95.6 m to 51.1 m, about 47% lower, by changing the target stream (single simulation rollouts of this task).">在所示 90° 爬升参数对比中，冻结同一 epoch 619 策略，仅调整目标流后，CTE-P90 由默认的 95.6 m 降至 51.1 m，约下降 47%（该任务的单次仿真记录）。</span></li>
+                <li><span data-en="Built a high-fidelity fixed-wing simulation environment for training and evaluation across multiple tasks and scenarios.">构建高保真固定翼动力学仿真环境，完成多任务、多场景训练与评测。</span></li>
+                <li><span data-en="Demonstrated stable closed-loop control across agile maneuvering tasks and released the code.">在多类高机动任务中取得稳定闭环控制效果，并开源相关代码。</span></li>
               </ul>
-              <p class="project-links">
-                <a href="https://github.com/My-85/Energy-Aware-Target-Streams-for-Learned-Fixed-Wing-Maneuvering" target="_blank" rel="noopener noreferrer"><span data-en="Code and more demos">代码与更多演示</span></a>
-                <a href="#publications"><span data-en="Paper information">论文信息</span></a>
-                <a href="assets/projects/g-eats/target-stream-comparison.csv" download><span data-en="Parameter comparison (CSV)">参数对比数据（CSV）</span></a>
-              </p>
-              <div class="project-media" data-project-media>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/g-eats/framework-zh.svg" data-en-href="assets/projects/g-eats/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="G-EATS 从参考航迹到目标流、学习飞控与评测的框架（打开大图）" data-en-aria-label="G-EATS reference-path, target-stream, learned-control and evaluation framework (open full-size image)">
-                    <img src="assets/projects/g-eats/framework-zh.svg" data-en-src="assets/projects/g-eats/framework-en.svg" width="1360" height="910" alt="G-EATS 从参考航迹到目标流、学习飞控与评测的框架" data-en-alt="G-EATS reference-path, target-stream, learned-control and evaluation framework" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="Target streams connect paths to flight skills. Closed-loop dynamics evaluate candidates; geometry and energy metrics assess execution quality. Click the image to enlarge.">目标流连接航迹与飞控；动力学反馈用于候选参数评估，几何与能量指标用于检验执行质量。点击图片可放大查看。</span></figcaption>
-                </figure>
-                <figure class="project-media-item">
-                  <video controls playsinline preload="metadata" poster="assets/projects/g-eats/figure-eight-poster.webp" aria-label="G-EATS 八字机动仿真回放" data-en-aria-label="G-EATS figure-eight simulation replay">
-                    <source src="assets/projects/g-eats/figure-eight.mp4" type="video/mp4">
-                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
-                  </video>
-                  <figcaption><span data-en="Figure-eight maneuver from an existing Tacview simulation recording, illustrating maneuver composition through a continuous target stream.">八字机动：来自项目已有 Tacview 仿真录像，用连续目标流展示长航迹的机动组合。</span></figcaption>
-                </figure>
-                <figure class="project-media-item">
-                  <video controls playsinline preload="metadata" poster="assets/projects/g-eats/vertical-arc-150-poster.webp" aria-label="G-EATS 150 度垂直圆弧机动仿真回放" data-en-aria-label="G-EATS 150-degree vertical-arc simulation replay">
-                    <source src="assets/projects/g-eats/vertical-arc-150.mp4" type="video/mp4">
-                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
-                  </video>
-                  <figcaption><span data-en="150° vertical-arc maneuver from the existing project recording. The angle denotes the reference arc span in this example.">150° 垂直圆弧机动：沿用项目已有录像；150° 指该示例的参考圆弧跨度。</span></figcaption>
-                </figure>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/g-eats/target-stream-results-zh.svg" data-en-href="assets/projects/g-eats/target-stream-results-en.svg" target="_blank" rel="noopener noreferrer" aria-label="冻结飞控策略下三组目标流参数的 90 度爬升对比（打开大图）" data-en-aria-label="90-degree pull-up with three target streams and the same frozen flight policy (open full-size image)">
-                    <img src="assets/projects/g-eats/target-stream-results-zh.webp" data-en-src="assets/projects/g-eats/target-stream-results-en.webp" width="1600" height="1024" alt="冻结飞控策略下三组目标流参数的 90 度爬升对比" data-en-alt="90-degree pull-up with three target streams and the same frozen flight policy" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="All three records completed this pull-up. The best pair uses L=1500 m and target speed 280 m/s. CTE-P90 is the 90th percentile of cross-track error; lower is better, and additional metrics assess safety and control quality.">三组记录均完成该爬升任务。最佳组合 L=1500 m、目标空速 280 m/s；CTE-P90 是轨迹偏离的 90 分位值，越低越好，不能单独概括全部安全与控制品质。</span></figcaption>
-                </figure>
+            <p class="project-resource-hint"><span data-en="Hover or tap to view project resources">悬停或点按查看项目资料</span></p>
+              <div class="project-resource-options" id="resource-options-g-eats" data-project-options aria-labelledby="resource-toggle-g-eats" hidden>
+                <p class="project-resource-label"><span data-en="Open in a new tab">在新窗口查看</span></p>
+                <div class="project-resource-links"><a href="projects/g-eats.html?lang=zh" data-en-href="projects/g-eats.html?lang=en" target="_blank" rel="noopener noreferrer"><span data-en="Project details">项目详情</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/g-eats.html?lang=zh#framework" data-en-href="projects/g-eats.html?lang=en#framework" target="_blank" rel="noopener noreferrer"><span data-en="Framework">研究框架</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/g-eats.html?lang=zh#results" data-en-href="projects/g-eats.html?lang=en#results" target="_blank" rel="noopener noreferrer"><span data-en="Results">评测结果</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/g-eats.html?lang=zh#demos" data-en-href="projects/g-eats.html?lang=en#demos" target="_blank" rel="noopener noreferrer"><span data-en="Demos">演示视频</span> <span aria-hidden="true">&#8599;</span></a> <a href="https://github.com/My-85/Energy-Aware-Target-Streams-for-Learned-Fixed-Wing-Maneuvering" target="_blank" rel="noopener noreferrer"><span data-en="Code repository">代码仓库</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/g-eats.html?lang=zh#data" data-en-href="projects/g-eats.html?lang=en#data" target="_blank" rel="noopener noreferrer"><span data-en="Data">实验数据</span> <span aria-hidden="true">&#8599;</span></a></div>
               </div>
+              <noscript><p class="project-links"><a href="projects/g-eats.html" target="_blank" rel="noopener noreferrer">查看项目详情 / Project details</a></p></noscript>
             </article>
             <!-- PROJECT g-eats: END -->
             <!-- PROJECT replay: START; media folder: assets/projects/replay/ -->
-            <article id="project-replay" data-project="replay">
+            <article id="project-replay" data-project="replay" data-project-resources>
               <div class="project-meta"><time><span data-en="May 2025 – September 2026">2025 年 5 月至 2026 年 9 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
-              <h3><span data-en="RL Sequential Data Collection &amp; Simulation Replay Platform">强化学习序贯数据采集与仿真回放平台</span></h3>
-              <p><span data-en="I developed an RL data-collection and simulation-replay toolchain for a subproject of the national Science and Technology Innovation 2030 “Brain Science and Brain-Like Research” program, linking training records to policy versions and visual results for experiment diagnosis and review.">我为国家科技创新 2030“脑科学与类脑研究”重大项目子课题开发强化学习数据采集与仿真回放工具链，让训练记录可以追溯到策略版本与可视化结果，支持实验问题定位和结果复查。</span></p>
+              <h3><button class="project-resource-toggle" type="button" id="resource-toggle-replay" data-project-toggle aria-controls="resource-options-replay" aria-expanded="false"><span data-en="RL Sequential Data Collection &amp; Simulation Replay Platform">强化学习序贯数据采集与仿真回放平台</span><span class="project-resource-icon" aria-hidden="true">+</span></button></h3>
+              <p><span data-en="Developed a data toolchain for a subproject of the national Science and Technology Innovation 2030 “Brain Science and Brain-Like Research” program.">为国家科技创新 2030“脑科学与类脑研究”重大项目子课题开发智能算法数据采集与仿真回放工具链。</span></p>
               <ul>
-                <li><span data-en="Adapted Planax trajectories and SMAC data for import validation, detailed queries, curve visualization, checkpoint archiving, and annotation management.">适配 Planax 轨迹与 SMAC 数据，连接导入校验、明细查询、曲线展示、checkpoint 归档和注释管理。</span></li>
-                <li><span data-en="Recovered physical flight quantities from normalized observations. The plot below uses an actual five-agent training log, with the corresponding data included.">将归一化观测还原为有物理单位的飞行状态；下方图表直接取自一段真实五智能体训练日志，并随包提供对应数据。</span></li>
-                <li><span data-en="Connected policy restoration with Tacview and managed ACMI / SC2Replay files, creating a traceable chain from training data and experiment/model records to simulation replay.">联动策略恢复与 Tacview，管理 ACMI / SC2Replay 文件；形成从训练数据、实验与模型记录到仿真回放的可追溯链路。</span></li>
+                <li><span data-en="Integrated Planax trajectories and SMAC training data with import validation, detailed queries, checkpoint archiving, and annotation management.">适配 Planax 轨迹与 SMAC 训练数据，实现导入校验、明细查询、checkpoint 归档和注释管理。</span></li>
+                <li><span data-en="Recovered physical quantities from normalized six-degree-of-freedom observations and linked Tacview and StarCraft II for ACMI/SC2Replay management and visual replay.">将六自由度归一化观测逆向还原为真实物理量，联动 Tacview 与星际争霸 II，实现 ACMI/SC2Replay 文件管理与可视化回放。</span></li>
               </ul>
-              <p class="project-links">
-                <a href="assets/projects/replay/rollout-sample.csv" download><span data-en="Sample physical data (CSV)">样例物理量（CSV）</span></a>
-              </p>
-              <div class="project-media" data-project-media>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/replay/framework-zh.svg" data-en-href="assets/projects/replay/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="强化学习数据采集、策略归档与仿真回放链路（打开大图）" data-en-aria-label="RL data collection, policy archiving and simulation replay pipeline (open full-size image)">
-                    <img src="assets/projects/replay/framework-zh.svg" data-en-src="assets/projects/replay/framework-en.svg" width="1360" height="910" alt="强化学习数据采集、策略归档与仿真回放链路" data-en-alt="RL data collection, policy archiving and simulation replay pipeline" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="Training records, physical quantities, policy checkpoints, and replay results are linked. Click the image to enlarge.">训练记录、物理量、策略 checkpoint 与回放结果可以相互关联。点击图片可放大查看。</span></figcaption>
-                </figure>
-                <figure class="project-media-item is-wide">
-                  <a href="assets/projects/replay/rollout-results-zh.svg" data-en-href="assets/projects/replay/rollout-results-en.svg" target="_blank" rel="noopener noreferrer" aria-label="真实训练日志中 agent 0 的空速与高度曲线（打开大图）" data-en-aria-label="Agent 0 airspeed and altitude from an actual training log (open full-size image)">
-                    <img src="assets/projects/replay/rollout-results-zh.webp" data-en-src="assets/projects/replay/rollout-results-en.webp" width="1600" height="1040" alt="真实训练日志中 agent 0 的空速与高度曲线" data-en-alt="Agent 0 airspeed and altitude from an actual training log" loading="lazy" decoding="async">
-                  </a>
-                  <figcaption><span data-en="Agent 0 from a five-agent log, across 1,000 recorded timesteps. Airspeed and altitude use the log’s scales of 340 m/s and 5000 m, respectively. The plot illustrates data traceability.">五智能体日志中的 agent 0，共 1000 个记录步。按日志定义还原空速（归一化值 × 340 m/s）与高度（归一化值 × 5000 m）；图表展示数据追溯能力。</span></figcaption>
-                </figure>
+            <p class="project-resource-hint"><span data-en="Hover or tap to view project resources">悬停或点按查看项目资料</span></p>
+              <div class="project-resource-options" id="resource-options-replay" data-project-options aria-labelledby="resource-toggle-replay" hidden>
+                <p class="project-resource-label"><span data-en="Open in a new tab">在新窗口查看</span></p>
+                <div class="project-resource-links"><a href="projects/replay.html?lang=zh" data-en-href="projects/replay.html?lang=en" target="_blank" rel="noopener noreferrer"><span data-en="Project details">项目详情</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/replay.html?lang=zh#framework" data-en-href="projects/replay.html?lang=en#framework" target="_blank" rel="noopener noreferrer"><span data-en="Framework">研究框架</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/replay.html?lang=zh#results" data-en-href="projects/replay.html?lang=en#results" target="_blank" rel="noopener noreferrer"><span data-en="Results">评测结果</span> <span aria-hidden="true">&#8599;</span></a> <a href="projects/replay.html?lang=zh#data" data-en-href="projects/replay.html?lang=en#data" target="_blank" rel="noopener noreferrer"><span data-en="Data">实验数据</span> <span aria-hidden="true">&#8599;</span></a></div>
               </div>
+              <noscript><p class="project-links"><a href="projects/replay.html" target="_blank" rel="noopener noreferrer">查看项目详情 / Project details</a></p></noscript>
             </article>
             <!-- PROJECT replay: END -->
             <!-- PROJECT reaction-wheels: START; media folder: assets/projects/reaction-wheels/ -->
@@ -472,6 +398,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20261014-project-media" defer></script>
+  <script src="script.js?v=20261014-project-links" defer></script>
 </body>
 </html>

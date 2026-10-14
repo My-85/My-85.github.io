@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="数据采集与仿真回放 项目介绍、框架、实验结果与演示。" data-en-content="RL Data Collection and Replay project overview, architecture, evaluation results, and demonstrations.">
+  <meta name="author" content="Qinyu Dong">
+  <link rel="canonical" href="https://my-85.github.io/projects/replay.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261014-project-links">
+  <title data-en="RL Data Collection and Replay | Qinyu Dong">数据采集与仿真回放 | 董沁雨</title>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main-content"><span data-en="Skip to main content">跳转到主要内容</span></a>
+  <header class="site-header" data-header>
+    <nav class="nav container" aria-label="项目导航" data-en-aria-label="Project navigation">
+      <a class="site-name" href="../index.html?lang=zh#project-replay" data-en-href="../index.html?lang=en#project-replay"><span data-en="Qinyu Dong">董沁雨</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-button><span class="menu-label" data-en="Menu">菜单</span> <span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="nav-links" id="nav-links" data-nav-links><a href="#overview"><span data-en="Overview">项目简介</span></a>
+<a href="#framework"><span data-en="Framework">研究框架</span></a>
+<a href="#results"><span data-en="Results">评测结果</span></a>
+<a href="#data"><span data-en="Data">数据与链接</span></a></div>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="选择语言" data-en-aria-label="Language selection">
+          <button type="button" data-language="zh" lang="zh-CN" aria-label="中文" aria-pressed="true">中文</button>
+          <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
+        <a class="cv-link" href="../index.html?lang=zh#project-replay" data-en-href="../index.html?lang=en#project-replay"><span data-en="Back to homepage">返回主页</span></a>
+      </div>
+    </nav>
+  </header>
+  <main class="project-detail container" id="main-content">
+    <p class="project-back"><a href="../index.html?lang=zh#project-replay" data-en-href="../index.html?lang=en#project-replay"><span data-en="Back to projects">返回项目列表</span></a></p>
+    <div class="project-list"><article id="overview" data-project="replay">
+              <div class="project-meta"><time><span data-en="May 2025 – September 2026">2025 年 5 月至 2026 年 9 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
+              <h1 id="project-page-title"><span data-en="RL Sequential Data Collection &amp; Simulation Replay Platform">强化学习序贯数据采集与仿真回放平台</span></h1>
+              <p><span data-en="I developed an RL data-collection and simulation-replay toolchain for a subproject of the national Science and Technology Innovation 2030 “Brain Science and Brain-Like Research” program, linking training records to policy versions and visual results for experiment diagnosis and review.">我为国家科技创新 2030“脑科学与类脑研究”重大项目子课题开发强化学习数据采集与仿真回放工具链，让训练记录可以追溯到策略版本与可视化结果，支持实验问题定位和结果复查。</span></p>
+              <ul>
+                <li><span data-en="Adapted Planax trajectories and SMAC data for import validation, detailed queries, curve visualization, checkpoint archiving, and annotation management.">适配 Planax 轨迹与 SMAC 数据，连接导入校验、明细查询、曲线展示、checkpoint 归档和注释管理。</span></li>
+                <li><span data-en="Recovered physical flight quantities from normalized observations. The plot below uses an actual five-agent training log, with the corresponding data included.">将归一化观测还原为有物理单位的飞行状态；下方图表直接取自一段真实五智能体训练日志，并随包提供对应数据。</span></li>
+                <li><span data-en="Connected policy restoration with Tacview and managed ACMI / SC2Replay files, creating a traceable chain from training data and experiment/model records to simulation replay.">联动策略恢复与 Tacview，管理 ACMI / SC2Replay 文件；形成从训练数据、实验与模型记录到仿真回放的可追溯链路。</span></li>
+              </ul>
+
+              <div class="project-media" data-project-media>
+                <figure class="project-media-item is-wide" id="framework">
+                  <a href="../assets/projects/replay/framework-zh.svg" data-en-href="../assets/projects/replay/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="强化学习数据采集、策略归档与仿真回放链路（打开大图）" data-en-aria-label="RL data collection, policy archiving and simulation replay pipeline (open full-size image)">
+                    <img src="../assets/projects/replay/framework-zh.svg" data-en-src="../assets/projects/replay/framework-en.svg" width="1360" height="910" alt="强化学习数据采集、策略归档与仿真回放链路" data-en-alt="RL data collection, policy archiving and simulation replay pipeline" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="Training records, physical quantities, policy checkpoints, and replay results are linked. Click the image to enlarge.">训练记录、物理量、策略 checkpoint 与回放结果可以相互关联。点击图片可放大查看。</span></figcaption>
+                </figure>
+                <figure class="project-media-item is-wide" id="results">
+                  <a href="../assets/projects/replay/rollout-results-zh.svg" data-en-href="../assets/projects/replay/rollout-results-en.svg" target="_blank" rel="noopener noreferrer" aria-label="真实训练日志中 agent 0 的空速与高度曲线（打开大图）" data-en-aria-label="Agent 0 airspeed and altitude from an actual training log (open full-size image)">
+                    <img src="../assets/projects/replay/rollout-results-zh.webp" data-en-src="../assets/projects/replay/rollout-results-en.webp" width="1600" height="1040" alt="真实训练日志中 agent 0 的空速与高度曲线" data-en-alt="Agent 0 airspeed and altitude from an actual training log" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="Agent 0 from a five-agent log, across 1,000 recorded timesteps. Airspeed and altitude use the log’s scales of 340 m/s and 5000 m, respectively. The plot illustrates data traceability.">五智能体日志中的 agent 0，共 1000 个记录步。按日志定义还原空速（归一化值 × 340 m/s）与高度（归一化值 × 5000 m）；图表展示数据追溯能力。</span></figcaption>
+                </figure>
+              </div>
+            <section class="project-data" id="data" aria-labelledby="project-data-title"><h2 id="project-data-title"><span data-en="Data and related links">数据与相关链接</span></h2><p class="project-links">
+                <a href="../assets/projects/replay/rollout-sample.csv" download><span data-en="Sample physical data (CSV)">样例物理量（CSV）</span></a>
+              </p></section></article></div>
+  </main>
+  <footer class="site-footer"><div class="container"><p>&copy; <span data-year>2026</span> <span data-en="Qinyu Dong">董沁雨</span></p><a href="../index.html?lang=zh#project-replay" data-en-href="../index.html?lang=en#project-replay"><span data-en="Back to projects">返回项目列表</span></a></div></footer>
+  <script src="../script.js?v=20261014-project-links" defer></script>
+</body>
+</html>

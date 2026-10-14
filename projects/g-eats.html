@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="G-EATS 项目介绍、框架、实验结果与演示。" data-en-content="G-EATS project overview, architecture, evaluation results, and demonstrations.">
+  <meta name="author" content="Qinyu Dong">
+  <link rel="canonical" href="https://my-85.github.io/projects/g-eats.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261014-project-links">
+  <title data-en="G-EATS | Qinyu Dong">G-EATS | 董沁雨</title>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main-content"><span data-en="Skip to main content">跳转到主要内容</span></a>
+  <header class="site-header" data-header>
+    <nav class="nav container" aria-label="项目导航" data-en-aria-label="Project navigation">
+      <a class="site-name" href="../index.html?lang=zh#project-g-eats" data-en-href="../index.html?lang=en#project-g-eats"><span data-en="Qinyu Dong">董沁雨</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-button><span class="menu-label" data-en="Menu">菜单</span> <span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="nav-links" id="nav-links" data-nav-links><a href="#overview"><span data-en="Overview">项目简介</span></a>
+<a href="#framework"><span data-en="Framework">研究框架</span></a>
+<a href="#results"><span data-en="Results">评测结果</span></a>
+<a href="#demos"><span data-en="Demos">演示视频</span></a>
+<a href="#data"><span data-en="Data">数据与链接</span></a></div>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="选择语言" data-en-aria-label="Language selection">
+          <button type="button" data-language="zh" lang="zh-CN" aria-label="中文" aria-pressed="true">中文</button>
+          <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
+        <a class="cv-link" href="../index.html?lang=zh#project-g-eats" data-en-href="../index.html?lang=en#project-g-eats"><span data-en="Back to homepage">返回主页</span></a>
+      </div>
+    </nav>
+  </header>
+  <main class="project-detail container" id="main-content">
+    <p class="project-back"><a href="../index.html?lang=zh#project-g-eats" data-en-href="../index.html?lang=en#project-g-eats"><span data-en="Back to projects">返回项目列表</span></a></p>
+    <div class="project-list"><article id="overview" data-project="g-eats">
+              <div class="project-meta"><time><span data-en="March – May 2026">2026 年 3 月至 5 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
+              <h1 id="project-page-title"><span data-en="G-EATS: Goal-Conditioned RL for Agile Fixed-Wing Control">G-EATS：目标条件强化学习与固定翼高机动控制</span></h1>
+              <p><span data-en="Following a complex path with a fixed-wing aircraft requires coordinated attitude, airspeed, lift direction, and energy. I designed G-EATS to learn direct actuator control with goal-conditioned RL, then convert a maneuver path into executable attitude and airspeed target streams.">让固定翼飞机沿复杂航迹飞行，需要同时处理姿态、空速、升力方向与能量。我设计 G-EATS，用目标条件强化学习学会直接舵面控制，再将整段航迹转换成飞机可执行的姿态与空速目标流。</span></p>
+              <ul>
+                <li><span data-en="The low-level skill uses quaternion-conditioned control and energy-aware PPO. The planning layer evaluates lookahead and airspeed choices for target streams, composing maneuvers while keeping the flight policy frozen.">低层采用四元数条件飞控与能量感知 PPO；规划层评估候选目标流的前视距离与空速，在冻结飞控策略的条件下组合不同机动。</span></li>
+                <li><span data-en="Execution is evaluated through cross-track error, velocity-tangent, nose and wing-plane alignment, together with energy and flight-envelope metrics.">用轨迹偏离、速度切向、机头与机翼平面误差，以及能量和飞行包线指标共同评估执行质量。</span></li>
+                <li><span data-en="In the illustrated 90° pull-up comparison, the same frozen epoch-619 policy reduced CTE-P90 from the default 95.6 m to 51.1 m, about 47% lower, by changing the target stream (single simulation rollouts of this task).">在所示 90° 爬升参数对比中，冻结同一 epoch 619 策略，仅调整目标流后，CTE-P90 由默认的 95.6 m 降至 51.1 m，约下降 47%（该任务的单次仿真记录）。</span></li>
+              </ul>
+
+              <div class="project-media" data-project-media>
+                <figure class="project-media-item is-wide" id="framework">
+                  <a href="../assets/projects/g-eats/framework-zh.svg" data-en-href="../assets/projects/g-eats/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="G-EATS 从参考航迹到目标流、学习飞控与评测的框架（打开大图）" data-en-aria-label="G-EATS reference-path, target-stream, learned-control and evaluation framework (open full-size image)">
+                    <img src="../assets/projects/g-eats/framework-zh.svg" data-en-src="../assets/projects/g-eats/framework-en.svg" width="1360" height="910" alt="G-EATS 从参考航迹到目标流、学习飞控与评测的框架" data-en-alt="G-EATS reference-path, target-stream, learned-control and evaluation framework" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="Target streams connect paths to flight skills. Closed-loop dynamics evaluate candidates; geometry and energy metrics assess execution quality. Click the image to enlarge.">目标流连接航迹与飞控；动力学反馈用于候选参数评估，几何与能量指标用于检验执行质量。点击图片可放大查看。</span></figcaption>
+                </figure>
+                <figure class="project-media-item" id="demos">
+                  <video controls playsinline preload="metadata" poster="../assets/projects/g-eats/figure-eight-poster.webp" aria-label="G-EATS 八字机动仿真回放" data-en-aria-label="G-EATS figure-eight simulation replay">
+                    <source src="../assets/projects/g-eats/figure-eight.mp4" type="video/mp4">
+                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
+                  </video>
+                  <figcaption><span data-en="Figure-eight maneuver from an existing Tacview simulation recording, illustrating maneuver composition through a continuous target stream.">八字机动：来自项目已有 Tacview 仿真录像，用连续目标流展示长航迹的机动组合。</span></figcaption>
+                </figure>
+                <figure class="project-media-item">
+                  <video controls playsinline preload="metadata" poster="../assets/projects/g-eats/vertical-arc-150-poster.webp" aria-label="G-EATS 150 度垂直圆弧机动仿真回放" data-en-aria-label="G-EATS 150-degree vertical-arc simulation replay">
+                    <source src="../assets/projects/g-eats/vertical-arc-150.mp4" type="video/mp4">
+                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
+                  </video>
+                  <figcaption><span data-en="150° vertical-arc maneuver from the existing project recording. The angle denotes the reference arc span in this example.">150° 垂直圆弧机动：沿用项目已有录像；150° 指该示例的参考圆弧跨度。</span></figcaption>
+                </figure>
+                <figure class="project-media-item is-wide" id="results">
+                  <a href="../assets/projects/g-eats/target-stream-results-zh.svg" data-en-href="../assets/projects/g-eats/target-stream-results-en.svg" target="_blank" rel="noopener noreferrer" aria-label="冻结飞控策略下三组目标流参数的 90 度爬升对比（打开大图）" data-en-aria-label="90-degree pull-up with three target streams and the same frozen flight policy (open full-size image)">
+                    <img src="../assets/projects/g-eats/target-stream-results-zh.webp" data-en-src="../assets/projects/g-eats/target-stream-results-en.webp" width="1600" height="1024" alt="冻结飞控策略下三组目标流参数的 90 度爬升对比" data-en-alt="90-degree pull-up with three target streams and the same frozen flight policy" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="All three records completed this pull-up. The best pair uses L=1500 m and target speed 280 m/s. CTE-P90 is the 90th percentile of cross-track error; lower is better, and additional metrics assess safety and control quality.">三组记录均完成该爬升任务。最佳组合 L=1500 m、目标空速 280 m/s；CTE-P90 是轨迹偏离的 90 分位值，越低越好，不能单独概括全部安全与控制品质。</span></figcaption>
+                </figure>
+              </div>
+            <section class="project-data" id="data" aria-labelledby="project-data-title"><h2 id="project-data-title"><span data-en="Data and related links">数据与相关链接</span></h2><p class="project-links">
+                <a href="https://github.com/My-85/Energy-Aware-Target-Streams-for-Learned-Fixed-Wing-Maneuvering" target="_blank" rel="noopener noreferrer"><span data-en="Code and more demos">代码与更多演示</span></a>
+                <a href="../index.html?lang=zh#publications" data-en-href="../index.html?lang=en#publications"><span data-en="Paper information">论文信息</span></a>
+                <a href="../assets/projects/g-eats/target-stream-comparison.csv" download><span data-en="Parameter comparison (CSV)">参数对比数据（CSV）</span></a>
+              </p></section></article></div>
+  </main>
+  <footer class="site-footer"><div class="container"><p>&copy; <span data-year>2026</span> <span data-en="Qinyu Dong">董沁雨</span></p><a href="../index.html?lang=zh#project-g-eats" data-en-href="../index.html?lang=en#project-g-eats"><span data-en="Back to projects">返回项目列表</span></a></div></footer>
+  <script src="../script.js?v=20261014-project-links" defer></script>
+</body>
+</html>

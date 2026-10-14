@@ -4,6 +4,8 @@
 
 这是一个直接使用 HTML、CSS 和 JavaScript 的静态网站。首次访问默认中文，右上角“中文 / EN”可以切换语言，并记住访客的选择。
 
+首页保留简洁的项目介绍。鼠标悬停或手机点按相应项目后，才显示资料链接；选择链接会在新窗口打开独立项目页。框架图、结果图、视频和实验数据放在独立项目页中。
+
 ## 如何预览
 
 解压源码包后，双击 `index.html` 即可查看页面和切换语言，不需要安装 Node.js 或构建工具。
@@ -21,14 +23,16 @@ python -m http.server 8000 --bind 127.0.0.1
 - 中文：`http://127.0.0.1:8000/?lang=zh#projects`
 - 英文：`http://127.0.0.1:8000/?lang=en#projects`
 - 单个项目：`http://127.0.0.1:8000/?lang=zh#project-worldprior`
+- 独立项目页：`http://127.0.0.1:8000/projects/planax.html?lang=zh`
 
 ## 文件用途
 
 | 文件或文件夹 | 用途 |
 | --- | --- |
-| `index.html` | 页面正文、项目介绍、中英文内容和媒体展示位置 |
+| `index.html` | 首页正文、简短项目介绍及悬停／点按后显示的资料链接 |
+| `projects/项目名.html` | 独立项目页，包含详细介绍、框架图、结果图和视频 |
 | `styles.css` | 排版、手机适配、项目图片与视频样式 |
-| `script.js` | 语言切换、语言记忆、手机菜单和滚动显示 |
+| `script.js` | 语言切换、语言记忆、项目资料选项、手机菜单和滚动显示 |
 | `assets/` | 页面使用的照片、图标、PDF 等资源 |
 | `assets/projects/项目名/` | 各项目新增的图片、GIF、MP4 等素材 |
 | `PROJECT_EDITING.md` | 项目同学的具体编辑步骤及可复制模板 |
@@ -37,9 +41,9 @@ python -m http.server 8000 --bind 127.0.0.1
 
 ## 项目同学从哪里开始
 
-请先看 `PROJECT_EDITING.md`，然后在 `index.html` 中搜索自己项目的 `PROJECT ...: START` 注释。
+请先看 `PROJECT_EDITING.md`，然后打开自己的独立项目页：`projects/autoplanax.html`、`projects/planax.html`、`projects/g-eats.html` 或 `projects/replay.html`。
 
-每位同学编辑自己项目的完整 `<article>` 区块，并把素材放到对应项目文件夹。修改完成后，将编辑过的文件、素材和修改说明回传给董沁雨，由董沁雨统一合并与发布。
+每位同学编辑自己的项目详情页，并把素材放到对应项目文件夹。首页只保留简短介绍和隐藏的链接选项。WorldPrior 和四轴飞轮项目尚未建立详情页，可先回传素材及说明。修改完成后，将编辑过的文件、素材和修改说明回传给董沁雨，由董沁雨统一合并与发布。
 
 不熟悉 HTML 的同学也可以直接提供素材、中文及英文说明、链接和展示顺序，供统一整合。
 
@@ -54,7 +58,7 @@ python -m http.server 8000 --bind 127.0.0.1
 图片替代文字同样支持双语：
 
 ```html
-<img src="assets/projects/planax/result.webp"
+<img src="../assets/projects/planax/result.webp"
      alt="无人机集群仿真效果"
      data-en-alt="UAV swarm simulation results">
 ```

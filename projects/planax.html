@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Planax 项目介绍、框架、实验结果与演示。" data-en-content="Planax project overview, architecture, evaluation results, and demonstrations.">
+  <meta name="author" content="Qinyu Dong">
+  <link rel="canonical" href="https://my-85.github.io/projects/planax.html">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261014-project-links">
+  <title data-en="Planax | Qinyu Dong">Planax | 董沁雨</title>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main-content"><span data-en="Skip to main content">跳转到主要内容</span></a>
+  <header class="site-header" data-header>
+    <nav class="nav container" aria-label="项目导航" data-en-aria-label="Project navigation">
+      <a class="site-name" href="../index.html?lang=zh#project-planax" data-en-href="../index.html?lang=en#project-planax"><span data-en="Qinyu Dong">董沁雨</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" data-menu-button><span class="menu-label" data-en="Menu">菜单</span> <span class="menu-icon" aria-hidden="true"></span></button>
+      <div class="nav-links" id="nav-links" data-nav-links><a href="#overview"><span data-en="Overview">项目简介</span></a>
+<a href="#framework"><span data-en="Framework">研究框架</span></a>
+<a href="#results"><span data-en="Results">评测结果</span></a>
+<a href="#demos"><span data-en="Demos">演示视频</span></a>
+<a href="#data"><span data-en="Data">数据与链接</span></a></div>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="选择语言" data-en-aria-label="Language selection">
+          <button type="button" data-language="zh" lang="zh-CN" aria-label="中文" aria-pressed="true">中文</button>
+          <button type="button" data-language="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
+        <a class="cv-link" href="../index.html?lang=zh#project-planax" data-en-href="../index.html?lang=en#project-planax"><span data-en="Back to homepage">返回主页</span></a>
+      </div>
+    </nav>
+  </header>
+  <main class="project-detail container" id="main-content">
+    <p class="project-back"><a href="../index.html?lang=zh#project-planax" data-en-href="../index.html?lang=en#project-planax"><span data-en="Back to projects">返回项目列表</span></a></p>
+    <div class="project-list"><article id="overview" data-project="planax">
+              <div class="project-meta"><time><span data-en="March 2025 – March 2026">2025 年 3 月至 2026 年 3 月</span></time><span><span data-en="Project Lead">项目负责人</span></span></div>
+              <h1 id="project-page-title"><span data-en="Planax: Parallel Simulation &amp; Reinforcement Learning for UAV Swarms">Planax：大规模无人机集群并行仿真与强化学习平台</span></h1>
+              <p><span data-en="I led development of a JAX/XLA fixed-wing simulation platform that combines nonlinear six-degree-of-freedom dynamics, aerodynamic lookup tables, environment feedback, and RL in a batched GPU loop, bringing flight physics to large-scale learning.">我主导研发基于 JAX/XLA 的固定翼仿真平台，把非线性六自由度动力学、气动查表、环境反馈和强化学习放进 GPU 并行闭环，让大规模训练建立在飞行物理上。</span></p>
+              <ul>
+                <li><span data-en="Tensor-LUT evaluates aerodynamic coefficients through batched GPU lookup and interpolation. A shared interface supports single-aircraft tracking, formation, and swarm interaction with PPO, MAPPO, and hierarchical RL.">Tensor-LUT 在 GPU 上批量查询和插值气动系数；统一接口覆盖单机跟踪、编队协作与集群交互，并部署 PPO、MAPPO 和分层强化学习。</span></li>
+                <li><span data-en="Completed 50-vs-50 swarm self-play training. The existing replay below shows 100 aircraft interacting, illustrating the scale of the supported scenarios.">完成 50v50 集群自博弈训练；下方提供 100 架飞机同时交互的已有仿真回放，直观展示平台承载的场景规模。</span></li>
+                <li><span data-en="For 10-step dynamics rollouts with one million parallel samples on an A100 80GB, measured throughput was about 30.7 million short rollouts/s: 13.5× PyTorch eager and 1.73× torch.compile with the same physics model.">在 A100 80GB、100 万并行样本的 10 步动力学 rollout 测试中，实测约 3070 万条短轨迹/秒；同模型下为 PyTorch eager 的 13.5 倍、torch.compile 的 1.73 倍。</span></li>
+              </ul>
+
+              <div class="project-media" data-project-media>
+                <figure class="project-media-item is-wide" id="framework">
+                  <a href="../assets/projects/planax/framework-zh.svg" data-en-href="../assets/projects/planax/framework-en.svg" target="_blank" rel="noopener noreferrer" aria-label="Planax 并行仿真与强化学习框架（打开大图）" data-en-aria-label="Planax parallel simulation and reinforcement-learning architecture (open full-size image)">
+                    <img src="../assets/projects/planax/framework-zh.svg" data-en-src="../assets/projects/planax/framework-en.svg" width="1360" height="910" alt="Planax 并行仿真与强化学习框架" data-en-alt="Planax parallel simulation and reinforcement-learning architecture" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="From aircraft states and control inputs to aerodynamics, state updates, and policy training. Click the image to enlarge.">从飞机状态与控制输入，到气动计算、状态推进和策略训练。点击图片可放大查看。</span></figcaption>
+                </figure>
+                <figure class="project-media-item is-wide" id="demos">
+                  <video controls playsinline preload="metadata" poster="../assets/projects/planax/swarm-50v50-poster.webp" aria-label="50v50 无人机集群仿真回放" data-en-aria-label="50-vs-50 UAV swarm simulation replay">
+                    <source src="../assets/projects/planax/swarm-50v50.mp4" type="video/mp4">
+                    <span data-en="If your browser cannot play this video, use the project demo link.">浏览器无法播放时，可通过项目链接查看演示。</span>
+                  </video>
+                  <figcaption><span data-en="50-vs-50 swarm interaction: an existing Tacview recording converted to MP4 at its original playback speed. Two teams total 100 aircraft; the clip demonstrates scenario scale, while win rates require evaluation data.">50v50 集群交互：已有 Tacview 录像转为 MP4，保留原录像播放速度。红蓝两队共 100 架飞机；本片展示场景规模，不单独证明策略胜率。</span></figcaption>
+                </figure>
+                <figure class="project-media-item is-wide" id="results">
+                  <a href="../assets/projects/planax/benchmark-zh.svg" data-en-href="../assets/projects/planax/benchmark-en.svg" target="_blank" rel="noopener noreferrer" aria-label="Planax 与同模型 PyTorch 实现的并行吞吐量对比（打开大图）" data-en-aria-label="Planax and PyTorch throughput with the same dynamics model (open full-size image)">
+                    <img src="../assets/projects/planax/benchmark-zh.webp" data-en-src="../assets/projects/planax/benchmark-en.webp" width="1600" height="1024" alt="Planax 与同模型 PyTorch 实现的并行吞吐量对比" data-en-alt="Planax and PyTorch throughput with the same dynamics model" loading="lazy" decoding="async">
+                  </a>
+                  <figcaption><span data-en="A100 80GB; float32; 10-step rollouts; 5 warmed, GPU-synchronized measurements; excludes data generation and transfer. Each sample is a short 10-step trajectory, rather than an end-to-end PPO training step.">A100 80GB，float32，10 步 rollout，预热后测量 5 次并同步 GPU；不含数据生成和传输。单位是一条 10 步短轨迹，并非 PPO 训练吞吐量。</span></figcaption>
+                </figure>
+              </div>
+            <section class="project-data" id="data" aria-labelledby="project-data-title"><h2 id="project-data-title"><span data-en="Data and related links">数据与相关链接</span></h2><p class="project-links">
+                <a href="https://github.com/My-85/Aeroplanax" target="_blank" rel="noopener noreferrer"><span data-en="Code repository">代码仓库</span></a>
+                <a href="../index.html?lang=zh#publications" data-en-href="../index.html?lang=en#publications"><span data-en="Paper information">论文信息</span></a>
+                <a href="../assets/projects/planax/swarm-50v50.mp4" target="_blank" rel="noopener noreferrer"><span data-en="Open swarm demo">打开集群演示</span></a>
+                <a href="../assets/projects/planax/benchmark.csv" download><span data-en="Benchmark data (CSV)">基准数据（CSV）</span></a>
+              </p></section></article></div>
+  </main>
+  <footer class="site-footer"><div class="container"><p>&copy; <span data-year>2026</span> <span data-en="Qinyu Dong">董沁雨</span></p><a href="../index.html?lang=zh#project-planax" data-en-href="../index.html?lang=en#project-planax"><span data-en="Back to projects">返回项目列表</span></a></div></footer>
+  <script src="../script.js?v=20261014-project-links" defer></script>
+</body>
+</html>
