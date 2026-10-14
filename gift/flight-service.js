@@ -1,4 +1,4 @@
-import {DEPLOYMENT_MODE,SERVICE_ORIGIN,PAGES_ORIGIN} from './site-config.js?v=12';
+import {DEPLOYMENT_MODE,SERVICE_ORIGIN,PAGES_ORIGIN} from './site-config.js?v=14';
 
 export const isPublicPages = DEPLOYMENT_MODE === 'pages';
 const channel = 'gift-flight-v1';
@@ -87,7 +87,7 @@ export function startServiceBridge(){
   if(!valid){send({type:'response',id:m.id,error:'不支持该试飞请求。'});return;}
   try{
    const value=await sameOriginAPI(m.path,m.data);
-   if(m.path==='state')status.textContent=value.online?'GPU 在线 · baseline 9a':'GPU 暂离线；可保留草图后重试。';
+   if(m.path==='state')status.textContent=value.online?'试飞服务在线 · baseline 9a 已就绪':'试飞通道正在重连。可先提交路线，恢复后开始计算。';
    else status.textContent=value.message||'连接正常，试飞进度将在原页面更新。';
    send({type:'response',id:m.id,value});
   }catch(error){status.textContent=error.message;send({type:'response',id:m.id,error:error.message});}

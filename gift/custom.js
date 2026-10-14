@@ -1,6 +1,6 @@
-import {SpatialEditor} from './editor3d.js?v=12';
+import {SpatialEditor} from './editor3d.js?v=14';
 import {sampleCurve} from './smooth_curve.js?v=6';
-import {flightAPI as api,isPublicPages,connectFlightService,onServiceConnection} from './flight-service.js?v=12';
+import {flightAPI as api,isPublicPages,connectFlightService,onServiceConnection} from './flight-service.js?v=14';
 const $=id=>document.getElementById(id),copy=v=>JSON.parse(JSON.stringify(v));
 let points=[],selected=2,undo=[],redo=[],transaction=null,reference=[],controlSegments=[],job=null,version=0,flightVersion=-1,compilation=null,previewIssues=[],risk=[];
 const templates={
@@ -88,17 +88,26 @@ document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA'].include
 function download(name,obj){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000);}
 $('export-route').onclick=()=>download('自定义三维路线.json',{schema:'a4.custom.v4',points});
 $('import-route').onchange=async e=>{try{if(job||!e.target.files[0])return;const v=JSON.parse(await e.target.files[0].text());if(!Array.isArray(v.points)||v.points.length<2||v.points.some(p=>!Array.isArray(p)||p.length!==3||p.some(x=>typeof x!=='number'||!Number.isFinite(x))))throw Error('需要至少两个有限三维控制点');begin();points=v.points;selected=Math.min(2,points.length-1);commit();editor.setBounds(reference);message('路线已导入');}catch(e){message('导入失败：'+e.message);}finally{e.target.value='';}};
-async function state(){try{const v=await api('state');$('service-state').textContent=v.requires_connection?'试飞需要授权连接':v.online?'GPU 在线 · baseline 9a':'GPU 暂离线 · 草图仍可编辑';}catch(e){$('service-state').textContent=e.message;}}
+async function state(){try{const v=await api('state');$('service-state').textContent=v.requires_connection?'连接服务后即可试飞':v.online?'试飞服务在线 · baseline 9a 已就绪':'试飞通道重连中 · 可提交排队';}catch(e){$('service-state').textContent='试飞连接中断 · 草图已保留';}}
+function showProgress(record){
+ const stages=['queued','compiling','flying','completed'],index=stages.indexOf(record.status);
+ $('flight-progress').hidden=false;
+ for(const item of $('flight-progress').querySelectorAll('[data-stage]')){
+  const n=stages.indexOf(item.dataset.stage);item.classList.toggle('current',n===index);item.classList.toggle('done',index>n);
+ }
+ const timings=record.result?.timings;
+ $('stage-detail').textContent=timings?`路线准备 ${timings.geometry_seconds.toFixed(1)} 秒 · 飞行计算 ${Number(timings.flight_seconds||0).toFixed(1)} 秒 · baseline 常驻复用`:record.status==='flying'?'正在计算 baseline 的实际航迹；网络进度上报在后台进行。':record.status==='compiling'?'生成 baseline 使用的路线目标，保留完整草图。':record.status==='queued'?'路线已保存到服务器；服务恢复后继续，可随时取消。':'';
+}
 if(isPublicPages){$('connect-service').hidden=false;$('connect-service').onclick=()=>{message('请在试飞连接窗口完成授权，草图仍保留在本页。');connectFlightService().then(state).catch(e=>message(e.message));};onServiceConnection(connected=>{$('connect-service').hidden=connected;state();});}
 function lock(active){for(const id of ['template','reset-template','undo','redo','add-mode','insert','remove','import-route'])$(id).disabled=active;editor.editable=!active;editor.select(selected);$('cancel').hidden=!active;$('cancel').disabled=job==='submitting';$('run').textContent=active?'正在编译 / 试飞…':'开始试飞';fields();buildReference();}
 $('run').onclick=async()=>{
  if(job)return;const connection=isPublicPages?connectFlightService():Promise.resolve();job='submitting';lock(true);message(isPublicPages?'连接授权试飞服务…':'正在提交路线…');
- try{await connection;const result=await api('jobs',{name:'自定义三维路线',positions:reference,control_points:points,control_segments:controlSegments});job=result.id;flightVersion=version;localStorage.setItem('a4-custom-job-v3',job);lock(true);message('已提交，等待编译与真实试飞…');poll();}
+ try{await connection;const result=await api('jobs',{name:'自定义三维路线',positions:reference,control_points:points,control_segments:controlSegments});job=result.id;flightVersion=version;localStorage.setItem('a4-custom-job-v3',job);lock(true);message(result.message||'已提交，等待准备飞行…');showProgress(result);poll();}
  catch(e){job=null;lock(false);message(e.message);}
 };
 $('cancel').onclick=async()=>{if(!job||job==='submitting')return;try{await api('cancel',{id:job});message('已请求取消，正在保留实际已飞记录');}catch(e){message(e.message);}};
 async function poll(){
- if(!job)return;try{const r=await api('jobs/'+job);message((r.message||r.status)+(['queued','compiling','flying'].includes(r.status)?` · 已用时 ${Math.max(0,Math.floor((Date.now()-r.created)/1000))} 秒`:''));
+ if(!job)return;try{const r=await api('jobs/'+job);showProgress(r);message((r.message||r.status)+(['queued','compiling','flying'].includes(r.status)?` · 已用时 ${Math.max(0,Math.floor((Date.now()-r.created)/1000))} 秒`:''));
   if(r.result?.compilation&&r.result.compilation.geometry_sha256!==compilation?.geometry_sha256){compilation=r.result.compilation;showDiagnostics();}
   if(['completed','rejected','error','cancelled'].includes(r.status)){
    const out=r.result;job=null;localStorage.removeItem('a4-custom-job-v3');lock(false);

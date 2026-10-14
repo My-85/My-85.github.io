@@ -22,7 +22,7 @@ function line(points,color,dashed=false,opacity=1){
  const l=new THREE.Line(g,material);if(dashed)l.computeLineDistances();return l;
 }
 function initScene(){
- const box=$('viewport');scene=new THREE.Scene();scene.background=new THREE.Color('#eeeee7');camera=new THREE.PerspectiveCamera(38,1,.001,1000);camera.up.set(0,1,0);
+ const box=$('viewport');scene=new THREE.Scene();scene.background=new THREE.Color('#f4f7fa');camera=new THREE.PerspectiveCamera(38,1,.001,1000);camera.up.set(0,1,0);
  renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));box.appendChild(renderer.domElement);
  renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label','参考路线与学生实际飞行三维对比');
  controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.09;controls.maxPolarAngle=Math.PI*.93;
@@ -38,8 +38,8 @@ function showGeometry(){
  if(!scene)return;
  if(group){scene.remove(group);dispose(group);}group=new THREE.Group();scene.add(group);plane=null;
  const all=trace.reference.concat(trace.position);const bounds=new THREE.Box3().setFromPoints(all.map(world));const size=bounds.getSize(new THREE.Vector3());center=bounds.getCenter(new THREE.Vector3());span=Math.max(size.x,size.y,size.z,1);
- group.add(line(trace.reference,'#b77737',true));
- if(trace.position.length){actualLine=line(trace.position,'#426b59');group.add(actualLine);}
+ group.add(line(trace.reference,'#d98b32',true));
+ if(trace.position.length){actualLine=line(trace.position,'#007eb8');group.add(actualLine);}
  const floor=Math.floor((bounds.min.y-span*.08)*2)/2,step=Math.pow(10,Math.floor(Math.log10(span/5))),tick=span/step>10?step*2:step;
  const lowE=Math.floor((bounds.min.x-span*.12)/tick)*tick,highE=Math.ceil((bounds.max.x+span*.12)/tick)*tick;
  const lowN=Math.floor((-bounds.max.z-span*.12)/tick)*tick,highN=Math.ceil((-bounds.min.z+span*.12)/tick)*tick;
@@ -54,7 +54,7 @@ function showGeometry(){
  const start=new THREE.Mesh(new THREE.SphereGeometry(span*.006,16,12),new THREE.MeshBasicMaterial({color:'#399785'}));start.position.copy(world(trace.reference[0]||trace.position[0]));group.add(start);
  if(trace.position.length){
   if(trace.attitude_complete===false){
-   plane=new THREE.Mesh(new THREE.SphereGeometry(span*.008,18,14),new THREE.MeshStandardMaterial({color:'#426b59'}));plane.userData.positionOnly=true;group.add(plane);
+   plane=new THREE.Mesh(new THREE.SphereGeometry(span*.008,18,14),new THREE.MeshStandardMaterial({color:'#007eb8'}));plane.userData.positionOnly=true;group.add(plane);
   }else{
   const model=aircraftMesh({position:[0,0,0],hprv:[0,0,0,250]},span*1000*.08);const vertices=[],colors=[];
   model.i.forEach((_,f)=>{const color=new THREE.Color(model.facecolor[f]);for(const j of [model.i[f],model.j[f],model.k[f]]){vertices.push(model.x[j],model.z[j],-model.y[j]);colors.push(color.r,color.g,color.b);}});
@@ -76,8 +76,8 @@ function drawChart(){
  const max=Math.max(180,Math.ceil(trace.cte.reduce((m,v)=>Math.max(m,v),0)/50)*50),duration=trace.time.at(-1),x=t=>32+t/duration*(w-45),y=v=>80-v/max*69;
  ctx.font='9px sans-serif';ctx.fillStyle='#79806f';ctx.strokeStyle='#dfe1d4';ctx.lineWidth=1;
  for(const v of [0,150,max]){ctx.beginPath();ctx.moveTo(30,y(v));ctx.lineTo(w-5,y(v));ctx.stroke();ctx.fillText(String(v),1,y(v)+3);}
- if(selected?.set!=='custom'&&!selected?.historical){ctx.setLineDash([4,4]);ctx.strokeStyle='#b77737';ctx.beginPath();ctx.moveTo(30,y(150));ctx.lineTo(w-5,y(150));ctx.stroke();ctx.setLineDash([]);}
- ctx.strokeStyle='#426b59';ctx.lineWidth=1.6;ctx.beginPath();trace.cte.forEach((v,i)=>i?ctx.lineTo(x(trace.time[i]),y(v)):ctx.moveTo(x(trace.time[i]),y(v)));ctx.stroke();
+ if(selected?.set!=='custom'&&!selected?.historical){ctx.setLineDash([4,4]);ctx.strokeStyle='#d98b32';ctx.beginPath();ctx.moveTo(30,y(150));ctx.lineTo(w-5,y(150));ctx.stroke();ctx.setLineDash([]);}
+ ctx.strokeStyle='#007eb8';ctx.lineWidth=1.6;ctx.beginPath();trace.cte.forEach((v,i)=>i?ctx.lineTo(x(trace.time[i]),y(v)):ctx.moveTo(x(trace.time[i]),y(v)));ctx.stroke();
  ctx.strokeStyle='#3b453b';ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(x(clock),5);ctx.lineTo(x(clock),83);ctx.stroke();ctx.fillText('0 s',30,97);ctx.fillText(`${fmt(duration)} s`,w-43,97);
 }
 function drawFrame(){

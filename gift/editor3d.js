@@ -10,7 +10,7 @@ export class SpatialEditor {
   constructor(container,callbacks){
     this.box=container;this.cb=callbacks;this.points=[];this.selected=1;this.editable=false;
     this.mode='select';this.planeName='NE';this.planeValue=5000;this.drag=null;
-    this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#eeeee7');
+    this.scene=new THREE.Scene();this.scene.background=new THREE.Color('#f4f7fa');
     this.camera=new THREE.PerspectiveCamera(42,1,.01,1200);
     this.camera.position.set(17,20,14);
     this.renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
@@ -78,7 +78,7 @@ export class SpatialEditor {
       if(Math.hypot(e.clientX-this.press.x,e.clientY-this.press.y)<5){const p=this.intersection(e);if(p)this.cb.add(neu(p));else this.cb.message('当前视角与画布平行，请稍微旋转视角。');}
     }
   }
-  select(index){this.selected=index;this.markers.forEach((m,i)=>m.material.color.set(i===index?'#b77737':'#426b59'));
+  select(index){this.selected=index;this.markers.forEach((m,i)=>m.material.color.set(i===index?'#d98b32':'#007eb8'));
     if(this.editable&&index>=0&&this.markers[index])this.transform.attach(this.markers[index]);else this.transform.detach();this.render();}
   setMode(mode){this.mode=mode;this.updatePlane();}
   setPlane(name,value){this.planeName=name;this.planeValue=value;this.updatePlane();}
@@ -104,10 +104,10 @@ export class SpatialEditor {
     this.points=points;this.editable=editable;
     while(this.markers.length>points.length){const m=this.markers.pop();this.scene.remove(m);m.geometry.dispose();m.material.dispose();const label=this.labels.pop();this.scene.remove(label);label.material.map.dispose();label.material.dispose();}
     points.forEach((p,i)=>{
-      if(!this.markers[i]){const m=new THREE.Mesh(new THREE.SphereGeometry(1,16,12),new THREE.MeshBasicMaterial({color:'#426b59',depthTest:false}));m.renderOrder=10;this.scene.add(m);this.markers.push(m);const label=this.textSprite(String(i),'#526a57',true);this.labels.push(label);this.scene.add(label);}
+      if(!this.markers[i]){const m=new THREE.Mesh(new THREE.SphereGeometry(1,16,12),new THREE.MeshBasicMaterial({color:'#007eb8',depthTest:false}));m.renderOrder=10;this.scene.add(m);this.markers.push(m);const label=this.textSprite(String(i),'#526a57',true);this.labels.push(label);this.scene.add(label);}
       this.markers[i].position.copy(vec(p));this.markers[i].visible=true;this.labels[i].position.copy(vec(p)).add(new THREE.Vector3(.2,.35,0));
     });
-    this.clear(this.lines);this.line(points,'#b7c1ae');this.line(reference,'#b77737');this.line(risk,'#a94d3d');this.line(actual,'#426b59');this.updateGuard();this.select(selected);
+    this.clear(this.lines);this.line(points,'#b7c1ae');this.line(reference,'#d98b32');this.line(risk,'#a94d3d');this.line(actual,'#007eb8');this.updateGuard();this.select(selected);
   }
   setGuard(g){this.guard=g;this.updateGuard();this.render();}
   updateGuard(){
