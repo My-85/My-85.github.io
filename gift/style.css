@@ -18,3 +18,7 @@
 @media(max-width:720px){.brand{flex-shrink:0}.brand small{font-size:7px;letter-spacing:1.2px;white-space:nowrap}nav{gap:12px;font-size:11px}nav a{white-space:nowrap}.nav-index{display:none}}
 
 .boot-status{font-size:12px;color:var(--muted);padding:10px 0;display:flex;align-items:center;gap:15px}.boot-status[hidden]{display:none}.boot-status button{font-size:11px;border:1px solid var(--line);background:white;border-radius:4px;padding:4px 9px}.boot-status a{color:var(--blue)}
+
+.engine-note{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:14px 16px;margin-top:18px;border:1px solid var(--line);background:#f4f9fc;font-size:12px}.engine-note strong{color:var(--blue);white-space:nowrap}.engine-note span{flex:1;min-width:200px;color:var(--muted)}.engine-note a{color:var(--blue);white-space:nowrap}
+
+.local-note{color:#52616f;font-size:13px;line-height:1.7;margin:16px 0;max-width:880px}

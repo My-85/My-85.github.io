@@ -1,20 +1,5 @@
-# GIFT — Flight workspace
+# GIFT browser flight lab
 
-Geometry-guided Imitation for Flight Tracking.
+Full immutable 9a policy (25 FP32 ONNX graphs) and original A4 equations execute in the visitor browser. No research-server connections, GPU lease, remote route compilation, or flight job queues. First preparation downloads about 276 MiB and caches assets; then arbitrary new custom routes can run without a network connection. Use a current Chrome / Edge with WebAssembly JSPI.
 
-Public replay and trajectory editor: https://my-85.github.io/gift/
-
-This folder contains the static website, vendored browser dependencies and
-archived flight/reference data. Flight traces preserve their recorded positions
-and measured attitudes; they are not newly generated flight simulations.
-
-Real custom flights use the existing owner-authorized GPU service. Start Flight
-opens its login/connection window; requests and results pass between the two
-verified origins, with no service credential embedded in the public source.
-Keep the connection window open while a flight is running.
-
-The model remains the retained A4 baseline 9a. Display meshes are illustrative.
-The method report contains research results as of 2026-10-12.
-
-GitHub Pages publishes the repository main branch; .nojekyll is at the repository
-root. No build step or server runtime is needed for these static files.
+Uncapped finite 3D geometry. Hardware memory and actual aircraft dynamics still apply. Browser / NumPy / WASM FP32 rounding can differ from original GPU execution; no universal bitwise identity is claimed. Existing replay records are immutable historical results, separate from newly computed flights.

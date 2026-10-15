@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>GIFT 浏览器飞行实验站</title>
+ <meta name="description" content="固定翼无人飞行器的真实三维航迹回放与自定义路线试飞。">
+ <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css?v=15">
+ <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+ <header><a class="brand" href="./" title="GIFT: Geometry-guided Imitation for Flight Tracking" aria-label="GIFT: Geometry-guided Imitation for Flight Tracking，返回首页"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M18 3 22 15 33 24 32 28 21 23 21 30 25 33 18 31 11 33 15 30 15 23 4 28 3 24 14 15Z"/></svg><span><strong>GIFT</strong> <small>BROWSER FLIGHT LAB</small></span></a><nav><a href="#explore"><span class="nav-index">01 / </span>飞行回放</a><a href="custom.html"><span class="nav-index">02 / </span>自定义试飞</a><a href="report.html">研究汇报 ↗</a><a href="https://github.com/My-85" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+ <main><aside class="engine-note"><strong>浏览器本地 · FP32</strong><span id="engine-note">完整 9a baseline · A4 动力学 · 在访问者的浏览器内计算</span><a href="custom.html">本地试飞 →</a></aside><div id="boot-status" class="boot-status" role="status">正在读取三维视图与航迹…</div>
+ <section class="intro"><div><h1>GIFT 浏览器飞行实验站</h1></div><a class="primary button" href="custom.html">自定义路线试飞 →</a></section>
+ <section id="explore" class="explorer">
+  <div class="section-title"><div><div class="eyebrow">01 / 真实飞行记录</div><h2>归档飞行回放</h2></div><span class="replay-tag">记录回放 · 非在线推理</span></div>
+  <div class="workbench">
+   <aside class="routes"><label for="dataset">选择飞行记录</label><select id="dataset"><option value="new">最新进展 · 3 条自主修复</option><option value="keeper">保留模型 · 完整 392 项评测</option><option value="coverage">最新诊断 · 完整 64 项补课</option></select><p id="set-note" class="set-note"></p><div class="filter-row"><label class="sr-only" for="status">按结果筛选</label><select id="status"><option value="all">全部结果</option><option value="pass">通过</option><option value="fail">未通过</option><option value="refused">未飞行</option><option value="recorded">历史实飞</option></select><label class="sr-only" for="search">搜索路线</label><input id="search" placeholder="编号 / 路线类别" type="search"></div><div id="list-count" class="list-count"></div><div id="route-list" class="route-list" aria-label="飞行路线列表"></div></aside>
+   <div class="flight-panel"><div class="flight-heading"><div><span id="case-badge" class="badge"></span><h3 id="case-title">正在读取飞行记录…</h3></div><span id="cp" class="mono"></span></div><div class="viewport-wrap"><div id="viewport" aria-label="三维航迹视图，鼠标拖动旋转，滚轮缩放"></div><div id="render-error" hidden></div><div class="view-tools"><button data-view="perspective" title="恢复三维视角">三维</button><button data-view="top">俯视</button><button data-view="side">侧视</button><button id="fullscreen">全屏</button></div><div class="legend"><span><i class="ref"></i>参考路线</span><span><i class="actual"></i>学生实际飞行</span></div><div class="view-foot">三轴物理等比例 · 飞机符号放大，姿态来自实测记录</div><div class="telemetry" id="telemetry"></div><div id="no-flight" hidden>未飞行：只展示参考几何，不生成虚构航迹。</div></div>
+    <div class="transport"><button id="play" class="primary" aria-label="播放飞行">▶ 播放</button><input id="scrub" aria-label="飞行时间轴" type="range" min="0" max="100" value="0" step="0.01"><output id="time">0.0 / 0.0 s</output><label class="sr-only" for="speed">播放速度</label><select id="speed"><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option><option value="8">8×</option></select></div>
+    <div class="metrics" id="metrics"></div><div class="chart-wrap"><div class="chart-label"><span>轨迹误差 CTE / m</span><span>虚线：P90 验收门槛 150 m；不是最大误差门槛</span></div><canvas id="chart" aria-label="轨迹误差随时间变化"></canvas></div>
+    <div class="case-footer"><p id="case-note"></p><div><a id="download-acmi" class="link-button" download>下载 Tacview ACMI ↓</a><a id="download-plot" class="link-button" download>下载对比图 ↓</a></div></div>
+   </div>
+  </div>
+ </section>
+ </main><footer><span>GIFT · 固定翼无人飞行器 / 2026.10.12</span><a href="report.md" download>下载汇报 Markdown ↓</a><a href="https://github.com/My-85" target="_blank" rel="noopener">My-85 / GitHub ↗</a></footer>
+ <script type="module" src="client/replay.js?v=20261015"></script>
+<script>(()=>{const notice=document.getElementById('boot-status');const timer=setInterval(()=>{const ready=document.body.dataset.custom?window.__customReady:window.__flightReady;if(ready){notice.hidden=true;clearInterval(timer);}},500);setTimeout(()=>{if(notice.hidden)return;notice.textContent='三维资源加载较慢。';const retry=document.createElement('button');retry.textContent='刷新重试';retry.onclick=()=>location.reload();const fallback=document.createElement('a');fallback.textContent='重新打开此页';fallback.href=location.pathname;notice.append(retry,fallback);},12000);})();</script><script>fetch("engine.json").then(r=>r.json()).then(v=>{document.getElementById("engine-note").textContent=v.summary||"浏览器本地 FP32 试飞";}).catch(()=>{});</script><script type="module" src="browser-flight.js"></script></body></html>

@@ -1,0 +1,13 @@
+{
+  "engine": "onnxruntime-web",
+  "provider": "WASMExecutionProvider",
+  "precision": "float32",
+  "checkpoint": "9a45713d3f392f7762758b27535e8057f271035880f00bbd99197efcde878bc0",
+  "summary": "浏览器本地试飞 · 完整 9a baseline 与真实 A4 动力学 · 无需实验服务器",
+  "graph_count": 25,
+  "first_download_megabytes": 276,
+  "server_compute": false,
+  "route_upload": false,
+  "cached_offline": true,
+  "numeric_note": "保留原权重、策略与物理方程；浏览器FP32舍入与原GPU可能存在差异，不保证任意长闭环逐位一致。"
+}

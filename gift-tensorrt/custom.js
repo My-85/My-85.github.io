@@ -1,6 +1,6 @@
 import {SpatialEditor} from './editor3d.js?v=14';
 import {sampleCurve} from './smooth_curve.js?v=6';
-import {flightAPI as api,isPublicPages,connectFlightService,onServiceConnection} from './flight-service.js?v=14';
+import {runLocalFlight,cancelLocalFlight,onLocalProgress,prepareLocalFlight,saveLocalResult,localRecords,localFlightReady} from './browser-flight.js';
 const $=id=>document.getElementById(id),copy=v=>JSON.parse(JSON.stringify(v));
 let points=[],selected=2,undo=[],redo=[],transaction=null,reference=[],controlSegments=[],job=null,version=0,flightVersion=-1,compilation=null,previewIssues=[],risk=[];
 const templates={
@@ -69,7 +69,7 @@ function fields(){
 }
 function changed(dirty=true){
  compilation=null;editor.clearIssueFocus();
- if(dirty){version++;try{localStorage.setItem('gift-tensorrt-points-v1',JSON.stringify(points));}catch{message('草图可继续编辑与试飞；浏览器存储已满，可导出路线保存。');}}
+ if(dirty){version++;try{localStorage.setItem('gift-browser-points-v1',JSON.stringify(points));}catch{message('草图可继续编辑与试飞；浏览器存储已满，可导出路线保存。');}}
  buildReference();fields();if(flightVersion>=0&&version!==flightVersion)$('custom-result').hidden=true;
 }
 function reset(){if(job)return;begin();points=copy(templates[$('template').value]);selected=2;commit();editor.setBounds(reference);}
@@ -88,36 +88,42 @@ document.addEventListener('keydown',e=>{if(['INPUT','SELECT','TEXTAREA'].include
 function download(name,obj){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000);}
 $('export-route').onclick=()=>download('自定义三维路线.json',{schema:'a4.custom.v4',points});
 $('import-route').onchange=async e=>{try{if(job||!e.target.files[0])return;const v=JSON.parse(await e.target.files[0].text());if(!Array.isArray(v.points)||v.points.length<2||v.points.some(p=>!Array.isArray(p)||p.length!==3||p.some(x=>typeof x!=='number'||!Number.isFinite(x))))throw Error('需要至少两个有限三维控制点');begin();points=v.points;selected=Math.min(2,points.length-1);commit();editor.setBounds(reference);message('路线已导入');}catch(e){message('导入失败：'+e.message);}finally{e.target.value='';}};
-async function state(){try{const v=await api('state');$('service-state').textContent=v.requires_connection?'连接服务后即可试飞':v.online?'试飞服务在线 · TensorRT FP32 已就绪':'试飞通道重连中 · 可提交排队';}catch(e){$('service-state').textContent='试飞连接中断 · 草图已保留';}}
 function showProgress(record){
- const stages=['queued','compiling','waiting_gpu','loading','flying','completed'],index=stages.indexOf(record.status);
+ const stages=['downloading','compiling','loading','flying','completed'],index=stages.indexOf(record.status);
  $('flight-progress').hidden=false;
  for(const item of $('flight-progress').querySelectorAll('[data-stage]')){
   const n=stages.indexOf(item.dataset.stage);item.classList.toggle('current',n===index);item.classList.toggle('done',index>n);
  }
- const timings=record.result?.timings;
- $('stage-detail').textContent=timings?`路线准备 ${Number(timings.geometry_seconds||0).toFixed(1)} 秒 · 飞行计算 ${Number(timings.flight_seconds||0).toFixed(1)} 秒 · TensorRT 引擎缓存复用`:record.status==='flying'?'正在计算 baseline 的实际航迹；网络进度上报在后台进行。':record.status==='compiling'?'生成 baseline 使用的路线目标，保留完整草图。':record.status==='waiting_gpu'?'完整路线已准备好，等待 GPU 空闲后自动开始；可随时取消。':record.status==='loading'?'正在载入 TensorRT 引擎与原版 GPU 物理仿真。':record.status==='queued'?'路线已保存到服务器，按提交顺序试飞，可随时取消。':'';
+ let detail=record.message||'';
+ if(record.total)detail+=` · ${(record.downloaded/1048576).toFixed(1)} / ${(record.total/1048576).toFixed(1)} MB`;
+ if(record.controls!==undefined)detail+=` · ${record.controls} 步 / ${Number(record.seconds||0).toFixed(1)} 秒仿真`;
+ $('stage-detail').textContent=detail;
+ if(record.compilation){compilation=record.compilation;showDiagnostics();}
 }
-if(isPublicPages){$('connect-service').hidden=false;$('connect-service').onclick=()=>{message('请在试飞连接窗口完成授权，草图仍保留在本页。');connectFlightService().then(state).catch(e=>message(e.message));};onServiceConnection(connected=>{$('connect-service').hidden=connected;state();});}
-function lock(active){for(const id of ['template','reset-template','undo','redo','add-mode','insert','remove','import-route'])$(id).disabled=active;editor.editable=!active;editor.select(selected);$('cancel').hidden=!active;$('cancel').disabled=job==='submitting';$('run').textContent=active?'正在编译 / 试飞…':'开始试飞';fields();buildReference();}
+onLocalProgress(record=>{showProgress(record);if(record.status==='ready')$('service-state').textContent='本地引擎已就绪 · 可离线试飞';});
+function lock(active){for(const id of ['template','reset-template','undo','redo','add-mode','insert','remove','import-route'])$(id).disabled=active;editor.editable=!active;editor.select(selected);$('cancel').hidden=!active;$('cancel').disabled=job==='preparing';$('run').textContent=active?'本机正在计算…':'开始试飞';fields();buildReference();}
 $('run').onclick=async()=>{
- if(job)return;const connection=isPublicPages?connectFlightService():Promise.resolve();job='submitting';lock(true);message(isPublicPages?'连接授权试飞服务…':'正在提交路线…');
- try{await connection;const result=await api('jobs',{name:'自定义三维路线',positions:reference,control_points:points,control_segments:controlSegments});job=result.id;flightVersion=version;localStorage.setItem('gift-tensorrt-job-v1',job);lock(true);message(result.message||'已提交，等待准备飞行…');showProgress(result);poll();}
- catch(e){job=null;lock(false);message(e.message);}
+ if(job)return;job='preparing';lock(true);message('准备本地引擎。首次下载后缓存；路线保留在本机。');
+ try{
+  await prepareLocalFlight();job='flying';lock(true);flightVersion=version;
+  const result=await runLocalFlight({name:'自定义三维路线',positions:reference,control_points:points,control_segments:controlSegments});
+  if(result.compilation){compilation=result.compilation;showDiagnostics();}
+  job=null;lock(false);showProgress({status:'completed',message:'本机飞行计算完成'});
+  if(result.trace?.position?.length){
+   $('custom-result').hidden=false;await window.showCustomFlight(result);$('custom-result').scrollIntoView({behavior:'smooth'});
+   const saved=await saveLocalResult(result);if(saved)await refreshLocalRecords();message((result.meta.note||'本机实际飞行记录已生成')+(saved?' · 已保存在此浏览器':' · 请下载记录保存'));
+  }else message(result.message||'没有生成实际飞行记录');
+ }catch(error){job=null;lock(false);message(error.message);}
 };
-$('cancel').onclick=async()=>{if(!job||job==='submitting')return;try{await api('cancel',{id:job});message('已请求取消，正在保留实际已飞记录');}catch(e){message(e.message);}};
-async function poll(){
- if(!job)return;try{const r=await api('jobs/'+job);showProgress(r);message((r.message||r.status)+(['queued','compiling','waiting_gpu','loading','flying'].includes(r.status)?` · 已用时 ${Math.max(0,Math.floor((Date.now()-r.created)/1000))} 秒`:''));
-  if(r.result?.compilation&&r.result.compilation.geometry_sha256!==compilation?.geometry_sha256){compilation=r.result.compilation;showDiagnostics();}
-  if(['completed','rejected','error','cancelled'].includes(r.status)){
-   const out=r.result;job=null;localStorage.removeItem('gift-tensorrt-job-v1');lock(false);
-   if(out?.trace){$('custom-result').hidden=false;await window.showCustomFlight(out);$('custom-result').scrollIntoView({behavior:'smooth'});message(out.meta.note||'实际飞行记录已生成');}
-   else message(out?.message||r.message||'任务已取消');return;
-  }
- }catch(e){message('连接中断：'+e.message+'；任务编号已保留，正在重连');}
- setTimeout(poll,2000);
+$('cancel').onclick=()=>{cancelLocalFlight();message('正在结束本机计算，保留已经实际计算的航迹。');};
+$('connect-service').hidden=true;
+async function refreshLocalRecords(){
+ try{const rows=await localRecords();$('local-records').replaceChildren(new Option('选择本机飞行记录',''),...rows.map(r=>new Option(new Date(r.created).toLocaleString()+' · '+r.meta.name+' · '+Number(r.meta.seconds).toFixed(1)+' s',r.id)));$('local-history').hidden=!rows.length;}catch{}
 }
-points=copy(templates.s);try{const v=JSON.parse(localStorage.getItem('gift-tensorrt-points-v1'));if(Array.isArray(v)&&v.length>=2&&v.every(p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite)))points=v;}catch{}
-selected=Math.min(selected,points.length-1);changed(false);editor.setBounds(reference);state();setInterval(state,15000);
-job=localStorage.getItem('gift-tensorrt-job-v1');if(job){flightVersion=version;lock(true);poll();}
+$('local-records').onchange=async e=>{if(!e.target.value||job)return;const result=await localRecords(e.target.value);if(result){flightVersion=version;$('custom-result').hidden=false;await window.showCustomFlight(result);message('正在查看本机保存的实际飞行。');}};
+$('download-local').onclick=async()=>{const id=$('local-records').value;if(!id){message('请先选择一条本机记录。');return;}const result=await localRecords(id);if(result)download('GIFT-本机飞行-'+id+'.json',result);};
+refreshLocalRecords();
+points=copy(templates.s);try{const v=JSON.parse(localStorage.getItem('gift-browser-points-v1')||localStorage.getItem('a4-custom-points-v3')||localStorage.getItem('gift-tensorrt-points-v1')||localStorage.getItem('gift-onnx-points-v1')||localStorage.getItem('gift-custom-points-v1'));if(Array.isArray(v)&&v.length>=2&&v.every(p=>Array.isArray(p)&&p.length===3&&p.every(Number.isFinite)))points=v;}catch{}
+selected=Math.min(selected,points.length-1);changed(false);editor.setBounds(reference);
+$('service-state').textContent='浏览器本地计算 · 无需连接实验服务器';
 window.__customReady=true;

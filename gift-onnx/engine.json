@@ -1,70 +1,13 @@
 {
-  "checkpoint": "9a45713d3f392f7762758b27535e8057f271035880f00bbd99197efcde878bc0",
-  "runtime": "ONNX Runtime 1.23.2",
+  "engine": "onnxruntime-web",
+  "provider": "WASMExecutionProvider",
   "precision": "float32",
-  "provider": "CPUExecutionProvider",
-  "threads": 1,
-  "model_graphs": 25,
-  "archived_carry_audit": {
-    "controls": 1446,
-    "actions_exact": true,
-    "discrete_field_mismatches": {},
-    "carry_max_abs": 3.5762786865234375e-07,
-    "max_all_float_error": 0.001708984375,
-    "onnx_calls": 39042,
-    "wall_seconds": 147.16291035339236,
-    "median_control_seconds": 0.09442264214158058
-  },
-  "propagated_carry_audit": {
-    "controls": 1446,
-    "actions_exact": true,
-    "discrete_field_mismatches": {},
-    "carry_max_abs": 4.76837158203125e-07,
-    "max_all_float_error": 0.001708984375,
-    "onnx_calls": 39042,
-    "wall_seconds": 147.29772445186973,
-    "median_control_seconds": 0.09475259482860565
-  },
-  "final_logits_audit": {
-    "sampled_controls": 17,
-    "actions_exact": true,
-    "max_abs": 0.0003662109375
-  },
-  "session_reuse": {
-    "graphs_before": 25,
-    "graphs_after": 25,
-    "added_graphs": 0,
-    "onnx_calls": 27
-  },
-  "closed_loop_equivalence_verified": false,
-  "bitwise_equivalent": false,
-  "neural_jax_fallback": false,
-  "summary": "ONNX FP32 · 同 CPU 后端 1,024 步动作/航迹一致；长路线与 GPU 原版存在差异，本页为独立实验版",
-  "cpu_closed_loop_validation": {
-    "controls": 1024,
-    "frames": 1025,
-    "simulated_seconds": 204.8000030517578,
-    "actions_exact": true,
-    "trajectory_exact": true,
-    "onnx_flight_seconds": 123.04780407436192,
-    "native_jax_cpu_flight_seconds": 125.72555678151548,
-    "compared_fields": [
-      "action_indices",
-      "actual_position_nea_m",
-      "actual_hprv",
-      "actual_velocity_neu_mps",
-      "actual_body_rates_rad_s",
-      "normalized_actions",
-      "observations",
-      "state_time_s"
-    ]
-  },
-  "original_gpu_comparison": {
-    "equivalent": false,
-    "original_controls": 1446,
-    "onnx_cpu_controls": 1024,
-    "first_action_difference_step_zero_based": 531,
-    "reason": "CPU and GPU physical arithmetic differ; original JAX CPU produces the same actions and trajectory as ONNX CPU in this test",
-    "fair_speedup_comparison": false
-  }
+  "checkpoint": "9a45713d3f392f7762758b27535e8057f271035880f00bbd99197efcde878bc0",
+  "summary": "浏览器本地试飞 · 完整 9a baseline 与真实 A4 动力学 · 无需实验服务器",
+  "graph_count": 25,
+  "first_download_megabytes": 276,
+  "server_compute": false,
+  "route_upload": false,
+  "cached_offline": true,
+  "numeric_note": "保留原权重、策略与物理方程；浏览器FP32舍入与原GPU可能存在差异，不保证任意长闭环逐位一致。"
 }

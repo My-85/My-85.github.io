@@ -1,19 +1,5 @@
-# GIFT TensorRT Flight Lab
+# GIFT browser flight lab
 
-Independent deployment: https://my-85.github.io/gift-tensorrt/
+Full immutable 9a policy (25 FP32 ONNX graphs) and original A4 equations execute in the visitor browser. No research-server connections, GPU lease, remote route compilation, or flight job queues. First preparation downloads about 276 MiB and caches assets; then arbitrary new custom routes can run without a network connection. Use a current Chrome / Edge with WebAssembly JSPI.
 
-Online custom flights use native TensorRT FP32, frozen 9a baseline weights
-and original JAX A4 GPU physics. No neural inference fallback is used.
-Start Flight opens the separate owner-authorized Site connection window;
-keep it open until the result returns. GPU requests share the canonical GPU1
-queue with research and release the lease after 30 idle seconds. The gateway
-remains online while the GPU is busy, retaining queued routes.
-
-All 1,446 archived actions/discrete states matched. Two complete GPU closed-loop
-comparisons matched actions and physical trajectories. Their warmed rollout
-measurements were about 14%–15% shorter than original JAX GPU, excluding the
-separately timed postflight audit. These are two test routes, not an equivalence
-or speed guarantee for all drawn paths. See engine.json for measured data.
-
-The original gift/ and independent gift-onnx/ websites remain unchanged.
-No model weights, service credentials or private server code are in this folder.
+Uncapped finite 3D geometry. Hardware memory and actual aircraft dynamics still apply. Browser / NumPy / WASM FP32 rounding can differ from original GPU execution; no universal bitwise identity is claimed. Existing replay records are immutable historical results, separate from newly computed flights.
